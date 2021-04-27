@@ -16,7 +16,7 @@ lib:
 			make -C ${LIBFT_DIR}
 
 $(NAME): 		$(OBJ)
-			@${CC} $(CFLAGS) -I $(INCLUDE) $(OBJ) -o $(NAME)
+			@${CC} $(CFLAGS) -I $(INCLUDE) $(OBJ) ${LIB} -o $(NAME)
 			@echo "\n------------------------------"
 			@echo "| => $(NAME) well created ! <= |"
 			@echo "------------------------------\n"
