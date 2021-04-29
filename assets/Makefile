@@ -1,5 +1,9 @@
-NAME 		= 	push_swap
+NAME 		= 	checker
 SRCS 		=	main.c \
+				list_util.c \
+				list_util_2.c \
+				parser_util.c \
+				switch_util.c \
 
 LIBFT_DIR	= 	../libft
 LIB		= 	../libft/libft.a
