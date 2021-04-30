@@ -6,28 +6,28 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/29 22:31:28 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/04/30 17:29:41 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	lst_is_sort(t_list *li, int (*f)(int, int))
+int	lst_is_sort(t_list *li)
 {
 	int		sens;
 
 	if (ft_lstsize(li) <= 1)
 		return (1);
-	while (li->next && (int)li->content == (int)li->next->content )
+	while (li->next && (int)li->content == (int)li->next->content)
 		li = li->next;
 	if (li->next == NULL)
 		return (1);
-	sens = (*f)((int)li->content, (int)li->next->content) > 0 ? 0 : 1;
+	sens = (int)li->next->content > (int)li->content ? 1 : 0;
 	while (li && li->next)
 	{
-		if (sens && (*f)((int)li->content, (int)li->next->content) > 0)
+		if (sens && (int)li->next->content < (int)li->content)
 			return (0);
-		if (!sens && (*f)((int)li->content, (int)li->next->content) < 0)
+		if (!sens && (int)li->next->content > (int)li->content)
 			return (0);
 		li = li->next;
 	}

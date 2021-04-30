@@ -17,8 +17,12 @@ void	parser(t_list **li, int argc, char **argv);
 void	display_list(t_list *li);
 void 	swap_list(t_list *li);
 void	shift_up(t_list **li);
+void	shift_down(t_list **li);
 void	transfer_top(t_list **li_a, t_list **li_b);
-int		lst_is_sort(t_list *li, int (*f)(int, int));
+int		lst_is_sort(t_list *li);
 int		lst_cmp(t_list *li_a, t_list *li_b);
+void	get_instruct(t_list **li_a, t_list **li_b, int *error);
+void	switcher(char *str, t_list **li_a, t_list **li_b);
+int		lst_checker(t_list **li_a, t_list **li_b);
 
 #endif

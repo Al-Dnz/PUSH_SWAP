@@ -2,29 +2,39 @@
 
 int	main(int argc, char **argv)
 {
-	t_list	*li_1;
-	t_list	*li_2;
-	//char	*str;
+	t_list	*li_a;
+	t_list	*li_b;
+	int		error;
 
-	li_1 = NULL;
-	li_2 = NULL;
+	li_a = NULL;
+	li_b = NULL;
+	error = 0;
+	if (argc == 1)
+		return (0);
 	if (arg_error(argc, argv))
 	{
 		ft_putstr_fd("Error\n", 1);
 		return (0);
 	}
-	parser(&li_1, argc, argv);
-	display_list(li_1);
+	parser(&li_a, argc, argv);
+	display_list(li_a);
+	display_list(li_b);
+	//printf("=>%d\n", lst_cmp(li_a, li_b));
+	//printf("=>%d\n", lst_is_sort(li_a));
+	//ft_lstclear(&li_a, &ft_del);
+	get_instruct(&li_a, &li_b, &error);
 
-	li_2 = ft_lstnew((void*)1);
-	ft_lstadd_back(&li_2, ft_lstnew((void*)2));
-	ft_lstadd_back(&li_2, ft_lstnew((void*)3));
-	display_list(li_2);
-	printf("\n======================================\n\n");
-	printf("=>%d\n", lst_cmp(li_1, li_2));
-	//printf("=>%d\n", lst_is_sort(li_1, &ft_is_supequal));
-	//ft_lstclear(&li_1, &ft_del);
+	if (!error)
+	{
+		if (lst_checker(&li_a, &li_b))
+			ft_putstr_fd("OK\n", 1);
+		else
+			ft_putstr_fd("KO\n", 1);
+	}
+	
 
+	ft_lstclear(&li_a, &ft_del);
+	ft_lstclear(&li_b, &ft_del);
 	return (1);
 }
 
@@ -40,6 +50,8 @@ int	main(int argc, char **argv)
 	ft_lstadd_back(&li2, ft_lstnew((void*)99));
 	ft_lstadd_back(&li2, ft_lstnew((void*)111));
 	display_list(li2);
+
+	printf("\n======================================\n\n");
 
 	printf("\n======================================\n\n");
 	transfer_top(&li, &li2);

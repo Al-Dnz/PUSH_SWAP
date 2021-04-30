@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 20:08:28 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/29 20:27:31 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/04/30 13:15:43 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	parser(t_list **li, int argc, char **argv)
 		tab = ft_split(argv[i], " ");
 		j = 0;
 		list_generator(li, tab);
-		free_tab(tab);
+		ft_free_tab(tab);
 		i++;		
 	}
 }
