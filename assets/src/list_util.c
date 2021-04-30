@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:22:41 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/30 22:24:16 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/04/30 22:28:26 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	display_list(t_list *li)
 {
 	while (li != NULL)
 	{
-		printf("[%d]->", (int)li->content);
+		ft_putstr_fd("[", 1);
+		ft_putnbr_fd((int)li->content, 1);
+		ft_putstr_fd("]->", 1);
 		li = li->next;
 	}
-	printf("NULL\n");
+	ft_putstr_fd("NULL\n", 1);
 }
 
 /*
