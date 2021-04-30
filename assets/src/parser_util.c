@@ -6,13 +6,13 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 20:08:28 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/30 13:15:43 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/04/30 22:22:27 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	arg_error(int argc, char **argv)
+int		arg_error(int argc, char **argv)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int	arg_error(int argc, char **argv)
 
 void	list_generator(t_list **li, char **tab)
 {
-	int	i;
+	int		i;
 	t_list	*temp;
 
 	temp = NULL;
@@ -62,6 +62,6 @@ void	parser(t_list **li, int argc, char **argv)
 		j = 0;
 		list_generator(li, tab);
 		ft_free_tab(tab);
-		i++;		
+		i++;
 	}
 }

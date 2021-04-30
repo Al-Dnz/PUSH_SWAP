@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/30 22:20:21 by adenhez           #+#    #+#             */
+/*   Updated: 2021/04/30 22:20:42 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 int	main(int argc, char **argv)
@@ -19,11 +31,7 @@ int	main(int argc, char **argv)
 	parser(&li_a, argc, argv);
 	display_list(li_a);
 	display_list(li_b);
-	//printf("=>%d\n", lst_cmp(li_a, li_b));
-	//printf("=>%d\n", lst_is_sort(li_a));
-	//ft_lstclear(&li_a, &ft_del);
 	get_instruct(&li_a, &li_b, &error);
-
 	if (!error)
 	{
 		if (lst_checker(&li_a, &li_b))
@@ -31,33 +39,7 @@ int	main(int argc, char **argv)
 		else
 			ft_putstr_fd("KO\n", 1);
 	}
-	
-
 	ft_lstclear(&li_a, &ft_del);
 	ft_lstclear(&li_b, &ft_del);
 	return (1);
 }
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
-	//shift_up(&li);
-	//display_list(li);
-
-	/*
-	t_list *li2 = NULL;
-	li2 = ft_lstnew((void*)55);
-	ft_lstadd_back(&li2, ft_lstnew((void*)33));
-	ft_lstadd_back(&li2, ft_lstnew((void*)99));
-	ft_lstadd_back(&li2, ft_lstnew((void*)111));
-	display_list(li2);
-
-	printf("\n======================================\n\n");
-
-	printf("\n======================================\n\n");
-	transfer_top(&li, &li2);
-	display_list(li);
-	display_list(li2);
-
-	ft_lstclear(&li, &ft_del);
-	ft_lstclear(&li2, &ft_del);
-	*/

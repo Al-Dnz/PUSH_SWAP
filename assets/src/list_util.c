@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_util.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/30 22:22:41 by adenhez           #+#    #+#             */
+/*   Updated: 2021/04/30 22:24:16 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 void	display_list(t_list *li)
@@ -10,9 +22,11 @@ void	display_list(t_list *li)
 	printf("NULL\n");
 }
 
-// sa/sb/ss
+/*
+**	sa/sb/ss
+*/
 
-void 	swap_list(t_list *li)
+void	swap_list(t_list *li)
 {
 	void	*tmp;
 
@@ -24,22 +38,26 @@ void 	swap_list(t_list *li)
 	ft_del(tmp);
 }
 
-// ra/rb/rr
+/*
+**	ra/rb/rr
+*/
 
 void	shift_up(t_list **li)
 {
 	t_list	*new;
-	void *tmp;
+	void	*tmp;
 
 	if (*li == NULL || ft_lstsize(*li) < 2)
 		return ;
 	tmp = ft_lstshift(*li);
-	new  = ft_lstnew(tmp);
+	new = ft_lstnew(tmp);
 	ft_lstadd_front(li, new);
 	ft_del(tmp);
 }
 
-// rra/rrb/rrr
+/*
+**	rra/rrb/rrr
+*/
 
 void	shift_down(t_list **li)
 {
@@ -54,7 +72,9 @@ void	shift_down(t_list **li)
 	ft_del(tmp);
 }
 
-// pa/pb
+/*
+**	 pa/pb
+*/
 
 void	transfer_top(t_list **li_a, t_list **li_b)
 {

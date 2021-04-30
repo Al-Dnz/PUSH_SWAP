@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/30 17:29:41 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/04/30 22:19:30 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	lst_is_sort(t_list *li)
 	return (1);
 }
 
-int lst_cmp(t_list *li_a, t_list *li_b)
+int	lst_cmp(t_list *li_a, t_list *li_b)
 {
 	if (ft_lstsize(li_a) != ft_lstsize(li_b))
 		return (0);
