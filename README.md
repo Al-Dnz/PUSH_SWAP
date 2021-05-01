@@ -17,6 +17,6 @@ echo $ARG
 ```
 ## TO_DO
 
-[] manage int overflow
-[] leaks in GNL
-[] quick sort
+- [ ] manage int overflow
+- [ ] leaks in GNL
+- [ ] quick sort
