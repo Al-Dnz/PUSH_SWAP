@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/01 16:46:56 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/01 23:27:08 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ void	get_instruct(t_list **li_a, t_list **li_b, int *error);
 void	switcher(char *str, t_list **li_a, t_list **li_b);
 int		lst_checker(t_list **li_a, t_list **li_b);
 int		quit(t_list **li_a, t_list **li_b, int mode);
+
+t_list	*find_median(t_list *li);
+void	divide_list(t_list **li_a, t_list **li_b);
 
 #endif

@@ -9,6 +9,7 @@ SRCS 		=	list_util.c \
 				switch_util.c \
 				get_instruct.c \
 				exit_util.c \
+				find_median.c \
 
 LIBFT_DIR	= 	./libft
 LIB			= 	./libft/libft.a
