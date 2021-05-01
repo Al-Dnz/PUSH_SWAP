@@ -15,3 +15,8 @@ Check your list with the next line:
 ```
 echo $ARG
 ```
+## TO_DO
+
+[] manage int overflow
+[] leaks in GNL
+[] quick sort
