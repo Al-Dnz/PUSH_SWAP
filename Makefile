@@ -8,6 +8,7 @@ SRCS 		=	list_util.c \
 				parser_util.c \
 				switch_util.c \
 				get_instruct.c \
+				exit_util.c \
 
 LIBFT_DIR	= 	./libft
 LIB			= 	./libft/libft.a

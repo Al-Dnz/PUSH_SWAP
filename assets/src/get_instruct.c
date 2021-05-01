@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_instruct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 12:38:50 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/30 22:20:11 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/01 17:06:17 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	get_instruct(t_list **li_a, t_list **li_b, int *error)
 			tab = ft_split(str, " ");
 			if (ft_tabsize(tab) > 1 || !auth_str(str))
 			{
-				printf("ERROR\n");
 				*error = 1;
 				ret = 0;
 			}
