@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/01 23:27:08 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/02 12:33:40 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stack	t_stack;
 
 int		arg_error(int argc, char **argv);
 void	list_generator(t_list **li, char **tab, int *error);
+int		duplicate_error(t_list *li);
 void	parser(t_list **li, int argc, char **argv, int *error);
 void	display_list(t_list *li);
 void	swap_list(t_list *li);

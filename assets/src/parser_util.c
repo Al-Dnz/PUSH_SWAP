@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 20:08:28 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/01 18:07:19 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/02 12:25:09 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,24 @@ ft_strlen(tab[i]) > 11 || !ft_atoi_checker(tab[i]))
 	}
 }
 
+int		duplicate_error(t_list *li)
+{
+	t_list	*tmp;
+
+	while (li)
+	{
+		tmp = li->next;
+		while (tmp)
+		{
+			if ((int)li->content == (int)tmp->content)
+				return (1);
+			tmp = tmp->next;
+		}
+		li = li->next;
+	}
+	return (0);
+}
+
 void	parser(t_list **li, int argc, char **argv, int *error)
 {
 	char	**tab;
@@ -67,4 +85,6 @@ void	parser(t_list **li, int argc, char **argv, int *error)
 		ft_free_tab(tab);
 		i++;
 	}
+	if (duplicate_error(*li))
+		*error = 1;
 }
