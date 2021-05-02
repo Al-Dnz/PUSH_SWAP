@@ -21,6 +21,11 @@ echo $ARG
 - [ ] leaks in GNL
 - [ ] quick sort
 
+## RESSOURCES
+
+- https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+
+
 ## STRATEGIES
 
 - 2 lists divided by median value of initial list
