@@ -11,6 +11,7 @@ SRCS 		=	list_util.c \
 				exit_util.c \
 				init_process.c \
 				flag_util.c \
+				process.c \
 
 LIBFT_DIR	= 	./libft
 LIB			= 	./libft/libft.a

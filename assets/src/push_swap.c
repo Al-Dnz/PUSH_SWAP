@@ -6,13 +6,12 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:13:29 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/02 13:22:16 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/02 16:29:53 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -40,7 +39,9 @@ int	main(int argc, char **argv)
 		return (quit(&li_a, &li_b, error));
 	ft_putstr_fd("median= ", 1);
 	ft_putnbr_fd((int)find_median(li_a)->content, 1);
-	divide_list(&li_a, &li_b);
+	ft_putstr_fd("\n", 1);
+	//divide_list(&li_a, &li_b);
+	process(&li_a, &li_b);
 	ft_putstr_fd("\n\n", 1);
 	display_list(li_a);
 	display_list(li_b);

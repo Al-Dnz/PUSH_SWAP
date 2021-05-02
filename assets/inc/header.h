@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/02 13:05:53 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/02 15:11:12 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include "../../libft/libft.h"
 # include <stdlib.h>
 # include <limits.h>
+
+
+///////////////////
+#include <stdio.h>
+///////////////////
 
 struct	s_stack
 {
@@ -50,5 +55,7 @@ int		quit(t_list **li_a, t_list **li_b, int mode);
 t_list	*find_median(t_list *li);
 void	divide_list(t_list **li_a, t_list **li_b);
 void	flag_parser(t_state *state, int argc, char **argv);
+void	process(t_list **li_a, t_list **li_b);
+
 
 #endif

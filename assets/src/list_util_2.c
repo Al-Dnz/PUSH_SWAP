@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_util_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/30 22:19:30 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/02 15:46:43 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	lst_is_sort(t_list *li)
 {
-	int		sens;
+	//int		sens;
 
 	if (ft_lstsize(li) <= 1)
 		return (1);
@@ -22,12 +22,16 @@ int	lst_is_sort(t_list *li)
 		li = li->next;
 	if (li->next == NULL)
 		return (1);
-	sens = (int)li->next->content > (int)li->content ? 1 : 0;
+	//sens = (int)li->next->content > (int)li->content ? 1 : 0;
 	while (li && li->next)
 	{
+		/*
 		if (sens && (int)li->next->content < (int)li->content)
 			return (0);
 		if (!sens && (int)li->next->content > (int)li->content)
+			return (0);
+		*/
+		if ((int)li->next->content < (int)li->content)
 			return (0);
 		li = li->next;
 	}
