@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/02 12:33:40 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/02 13:05:53 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ struct	s_stack
 	struct s_stack	*next;
 };
 typedef struct s_stack	t_stack;
+
+struct	s_state
+{
+	int				verbose;
+	int				color;
+};
+typedef struct s_state	t_state;
 
 int		arg_error(int argc, char **argv);
 void	list_generator(t_list **li, char **tab, int *error);
@@ -42,5 +49,6 @@ int		quit(t_list **li_a, t_list **li_b, int mode);
 
 t_list	*find_median(t_list *li);
 void	divide_list(t_list **li_a, t_list **li_b);
+void	flag_parser(t_state *state, int argc, char **argv);
 
 #endif
