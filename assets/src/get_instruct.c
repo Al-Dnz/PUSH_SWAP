@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 12:38:50 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/02 16:22:02 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/04 13:49:05 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		lst_checker(t_list **li_a, t_list **li_b)
 {
-	if (ft_lstsize(*li_b) == 0 && lst_is_sort(*li_a))
+	if (ft_lstsize(*li_b) == 0 && lst_is_sort(*li_a) > 0)
 		return (1);
 	return (0);
 }

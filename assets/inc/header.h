@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/02 15:11:12 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/04 21:43:15 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 ///////////////////
 #include <stdio.h>
+int g_accumulator;
 ///////////////////
 
 struct	s_stack
@@ -57,5 +58,16 @@ void	divide_list(t_list **li_a, t_list **li_b);
 void	flag_parser(t_state *state, int argc, char **argv);
 void	process(t_list **li_a, t_list **li_b);
 
+
+
+t_list	*list_min(t_list *li);
+t_list	*list_max(t_list *li);
+int	optimized_shift(t_list *li, t_list *list_inf);
+void	divide_from_median(t_list **li_a, t_list **li_b);
+void	sort_by_push(t_list **li_a, t_list **li_b);
+void	bring_back(t_list **li_a, t_list **li_b);
+void insertion_sort(t_list **li);
+void	process(t_list **li_a, t_list **li_b);
+void	switch_push_swap(t_list **li_a, t_list **li_b);
 
 #endif

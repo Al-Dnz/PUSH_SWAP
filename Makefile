@@ -6,7 +6,8 @@ MAIN_FILE2	= 	assets/src/push_swap.c
 SRCS 		=	list_util.c \
 				list_util_2.c \
 				parser_util.c \
-				switch_util.c \
+				switch_checker.c \
+				switch_pushswap.c \
 				get_instruct.c \
 				exit_util.c \
 				init_process.c \

@@ -6,7 +6,7 @@
 /*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/02 15:46:43 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/04 14:49:37 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	lst_is_sort(t_list *li)
 {
-	//int		sens;
+	int		sens;
 
 	if (ft_lstsize(li) <= 1)
 		return (1);
@@ -22,20 +22,24 @@ int	lst_is_sort(t_list *li)
 		li = li->next;
 	if (li->next == NULL)
 		return (1);
-	//sens = (int)li->next->content > (int)li->content ? 1 : 0;
+	sens = (int)li->next->content > (int)li->content ? 1 : 0;
 	while (li && li->next)
 	{
-		/*
+		
 		if (sens && (int)li->next->content < (int)li->content)
 			return (0);
 		if (!sens && (int)li->next->content > (int)li->content)
 			return (0);
-		*/
+		/*
 		if ((int)li->next->content < (int)li->content)
 			return (0);
+		*/
 		li = li->next;
 	}
-	return (1);
+	if (sens == 0)
+		return (-1);
+	else
+		return (1);
 }
 
 int	lst_cmp(t_list *li_a, t_list *li_b)
