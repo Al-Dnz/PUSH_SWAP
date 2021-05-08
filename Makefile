@@ -13,6 +13,7 @@ SRCS 		=	list_util.c \
 				init_process.c \
 				flag_util.c \
 				process.c \
+				process_2.c \
 
 LIBFT_DIR	= 	./libft
 LIB			= 	./libft/libft.a

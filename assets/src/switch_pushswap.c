@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   switch_pushswap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:25:42 by alexdnz           #+#    #+#             */
-/*   Updated: 2021/05/04 22:57:16 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/06 00:02:46 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,61 @@ void	process_5(t_list **li_a, t_list **li_b)
 	bring_back(li_a, li_b);
 }
 
-void	process_60(t_list **li_a, t_list **li_b)
+void	process_100(t_list **li_a, t_list **li_b)
 {
-	(void)li_a;
-	(void)li_b;
-	divide_from_median(li_a, li_b);
+	(void)li_b;	
+	printf("PROCESS_100\n");
+	t_list *pivot;
+	int		size;
+
+	pivot = pivot_list(*li_a, 4);
+	size = ft_lstsize(*li_a);
+	/*
+	while (size--)
+	{
+		if ((int)(*li_a)->content <= (int)pivot->content)
+		{
+			g_accumulator++;
+			transfer_top(li_a, li_b);
+		}
+			
+		shift_up(li_a);
+	}
+
+	pivot = pivot_list(*li_a, 4);
+	size = ft_lstsize(*li_a);
+	while (size--)
+	{
+		if ((int)(*li_a)->content <= (int)pivot->content)
+		{
+			g_accumulator++;
+			transfer_top(li_a, li_b);
+		}
+		g_accumulator++;	
+		shift_up(li_a);
+	}
+	*/
+	while (*li_a)
+	{
+		g_accumulator++;
+		transfer_top(li_a, li_b);
+	}
+	t_list *tmp;
+	while(*li_b)
+	{
+		tmp = list_max(*li_b);
+		g_accumulator++;
+		if  (*li_b == tmp)
+			transfer_top(li_b, li_a);
+		else if (optimized_shift(*li_b, tmp))	
+			shift_up(li_b);
+		else
+			shift_down(li_b);
+	}
 	//process_3(li_a, li_b);
-	//bring_back(li_a, li_b);
+
+	
+	
 }
 
 
@@ -123,6 +171,11 @@ void	switch_push_swap(t_list **li_a, t_list **li_b)
 		}
 	*/
 	
+	if (size <= 1000)
+	{
+		process_100(li_a, li_b);
+		return;
+	}
 	if (size == 1)
 		return;
 	if (size == 2)
@@ -142,11 +195,7 @@ void	switch_push_swap(t_list **li_a, t_list **li_b)
 		process_5(li_a, li_b);
 		return;
 	}
-	if (size <= 100)
-	{
-		process_60(li_a, li_b);
-		return;
-	}
+	
 	
 
 }

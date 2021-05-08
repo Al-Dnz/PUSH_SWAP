@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:13:29 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/04 12:52:02 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/05 20:46:11 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int	main(int argc, char **argv)
 	ft_putstr_fd("\n\n", 1);
 	display_list(li_a);
 	display_list(li_b);
+	printf("OPERATION_COUNT => [%d]\n", g_accumulator);
 	return (quit(&li_a, &li_b, error));
 }

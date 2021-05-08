@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/04 21:43:15 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/05 18:47:52 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ void	bring_back(t_list **li_a, t_list **li_b);
 void insertion_sort(t_list **li);
 void	process(t_list **li_a, t_list **li_b);
 void	switch_push_swap(t_list **li_a, t_list **li_b);
+
+t_list	*pivot_list(t_list *li, int n);
 
 #endif

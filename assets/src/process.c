@@ -163,8 +163,9 @@ void insertion_sort(t_list **li)
 void	process(t_list **li_a, t_list **li_b)
 {
 	g_accumulator = 0;
+
 	switch_push_swap(li_a, li_b);
-	printf("OPERATION_COUNT => [%d]\n", g_accumulator);
+	
 }
 
 
