@@ -1,78 +1,5 @@
 #include "header.h"
 
-
-
-t_list	*list_min(t_list *li)
-{
-	t_list *res;
-	t_list *tmp;
-
-	res = li;
-	while (li)
-	{
-		tmp = li;
-		while (tmp)
-		{
-			if ((int)res->content > (int)tmp->content)
-				res = tmp;
-			tmp = tmp->next;
-		}
-		li = li->next;
-	}
-	/*
-	if (res != NULL)
-		res->next = NULL;
-	*/
-	return (res);
-}
-
-t_list	*list_max(t_list *li)
-{
-	t_list *res;
-	t_list *tmp;
-
-	res = li;
-	while (li)
-	{
-		tmp = li;
-		while (tmp)
-		{
-			if ((int)res->content < (int)tmp->content)
-				res = tmp;
-			tmp = tmp->next;
-		}
-		li = li->next;
-	}
-	return (res);
-}
-
-
-int	optimized_shift(t_list *li, t_list *list_inf)
-{
-	int before;
-	int	after;
-
-	before = 0;
-	after = 0;
-	while (li != list_inf)
-	{
-		before++;
-		li = li->next;
-	}
-	if (li)
-		li = li->next;
-	while (li)
-	{
-		after++;
-		li = li->next;
-	}
-	if (before <= after)
-		return (0);
-	else
-		return (1);
-}	
-
-
 void	sort_by_push(t_list **li_a, t_list **li_b)
 {
 	t_list	*list_inf;
@@ -84,23 +11,19 @@ void	sort_by_push(t_list **li_a, t_list **li_b)
 		{
 				if (optimized_shift(*li_a, list_inf))
 				{
-					printf("ra\n");
 					g_accumulator++;
-					shift_up(li_a);
+					shift_up(li_a, 1);
 				}	
 				else
 				{
-					printf("rra\n");
 					g_accumulator++;
-					shift_down(li_a);
+					shift_down(li_a, 1);
 				}
 		}
-		printf("pa\n");
 		g_accumulator++;
-		transfer_top(li_a, li_b);
+		transfer_top(li_a, li_b, 1);
 	}
 }
-
 
 void	divide_from_median(t_list **li_a, t_list **li_b)
 {
@@ -116,32 +39,18 @@ void	divide_from_median(t_list **li_a, t_list **li_b)
 		{
 				if (optimized_shift(*li_a, list_inf))
 				{
-					printf("ra\n");
 					g_accumulator++;
-					shift_up(li_a);
+					shift_up(li_a, 1);
 				}	
 				else
 				{
-					printf("rra\n");
 					g_accumulator++;
-					shift_down(li_a);
+					shift_down(li_a, 1);
 				}
 		}
-		printf("pa\n");
 		g_accumulator++;
-		transfer_top(li_a, li_b);
+		transfer_top(li_a, li_b, 1);
 	}
-}
-
-void	bring_back(t_list **li_a, t_list **li_b)
-{
-	while (*li_b != NULL)
-	{
-		printf("pb\n");
-		g_accumulator++;
-		transfer_top(li_b, li_a);
-	}
-
 }
 
 void insertion_sort(t_list **li)
@@ -152,11 +61,11 @@ void insertion_sort(t_list **li)
 			{
 				g_accumulator++;
 				printf("sa\n");
-				swap_list(*li);
+				swap_list(*li, 1);
 			}
 			g_accumulator++;
 			printf("rra\n");
-			shift_down(li);
+			shift_down(li, 1);
 		}
 }	
 
@@ -164,7 +73,51 @@ void	process(t_list **li_a, t_list **li_b)
 {
 	g_accumulator = 0;
 
-	switch_push_swap(li_a, li_b);
+	int size;
+	
+	size = ft_lstsize(*li_a);
+	
+	/*
+	if (lst_is_sort(*li_a) == -1)
+	{
+		
+		while (lst_is_sort(*li_a) < 1)
+		{
+			g_accumulator++;
+			ft_putstr_fd("ra\n", 1);
+			swap_list(*li_a);
+			if (lst_is_sort(*li_a) == 1)
+				break;
+			shift_up(li_a);
+		}
+			printf("YOLOPOLO\n");
+			return;
+		}
+	*/
+	
+	
+	if (size == 1)
+		return;
+	if (size == 2)
+	{
+		process_2(li_a, li_b);
+		return;
+	}	
+	if (size == 3)
+	{
+		process_3(li_a, li_b);
+		return;
+	}
+	if (size < 60)
+	{
+		process_5(li_a, li_b);
+		return;
+	}
+	if (size <= 1000)
+	{
+		process_100(li_a, li_b);
+		return;
+	}
 	
 }
 

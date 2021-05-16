@@ -4,16 +4,17 @@ MAIN_FILE1	= 	assets/src/checker.c
 MAIN_FILE2	= 	assets/src/push_swap.c
 
 SRCS 		=	list_util.c \
-				list_util_2.c \
+				sort_operation.c \
 				parser_util.c \
 				switch_checker.c \
-				switch_pushswap.c \
 				get_instruct.c \
 				exit_util.c \
-				init_process.c \
 				flag_util.c \
 				process.c \
-				process_2.c \
+				process_util.c \
+				big_process.c \
+				short_process.c \
+				register_util.c
 
 LIBFT_DIR	= 	./libft
 LIB			= 	./libft/libft.a

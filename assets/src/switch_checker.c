@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   switch_util.c                                      :+:      :+:    :+:   */
+/*   switch_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 13:47:27 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/02 16:22:14 by alexdnz          ###   ########.fr       */
+/*   Updated: 2021/05/09 21:02:33 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,43 @@
 void	swapper(char *str, t_list **li_a, t_list **li_b)
 {
 	if (ft_strcmp(str, "sa") == 0)
-		swap_list(*li_a);
+		swap_list(*li_a, 0);
 	if (ft_strcmp(str, "sb") == 0)
-		swap_list(*li_b);
+		swap_list(*li_b, 0);
 	if (ft_strcmp(str, "ss") == 0)
 	{
-		swap_list(*li_a);
-		swap_list(*li_b);
+		swap_list(*li_a, 0);
+		swap_list(*li_b, 0);
 	}
 }
 
 void	pusher(char *str, t_list **li_a, t_list **li_b)
 {
 	if (ft_strcmp(str, "pa") == 0)
-		transfer_top(li_a, li_b);
+		transfer_top(li_a, li_b, 0);
 	if (ft_strcmp(str, "pb") == 0)
-		transfer_top(li_b, li_a);
+		transfer_top(li_b, li_a, 0);
 }
 
 void	rotater(char *str, t_list **li_a, t_list **li_b)
 {
 	if (ft_strcmp(str, "ra") == 0)
-		shift_up(li_a);
+		shift_up(li_a, 0);
 	if (ft_strcmp(str, "rb") == 0)
-		shift_up(li_b);
+		shift_up(li_b, 0);
 	if (ft_strcmp(str, "rr") == 0)
 	{
-		shift_up(li_a);
-		shift_up(li_b);
+		shift_up(li_a, 0);
+		shift_up(li_b, 0);
 	}
 	if (ft_strcmp(str, "rra") == 0)
-		shift_down(li_a);
+		shift_down(li_a, 0);
 	if (ft_strcmp(str, "rrb") == 0)
-		shift_down(li_b);
+		shift_down(li_b, 0);
 	if (ft_strcmp(str, "rrr") == 0)
 	{
-		shift_down(li_a);
-		shift_down(li_b);
+		shift_down(li_a, 0);
+		shift_down(li_b, 0);
 	}
 }
 

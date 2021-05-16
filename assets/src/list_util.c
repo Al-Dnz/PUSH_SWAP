@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/30 22:22:41 by adenhez           #+#    #+#             */
-/*   Updated: 2021/04/30 22:28:26 by adenhez          ###   ########.fr       */
+/*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
+/*   Updated: 2021/05/15 17:45:01 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,67 +24,90 @@ void	display_list(t_list *li)
 	ft_putstr_fd("NULL\n", 1);
 }
 
-/*
-**	sa/sb/ss
-*/
-
-void	swap_list(t_list *li)
+int	lst_is_sort(t_list *li)
 {
-	void	*tmp;
+	int		sens;
 
-	if (li == NULL || li->next == NULL)
-		return ;
-	tmp = li->content;
-	li->content = li->next->content;
-	li->next->content = tmp;
-	ft_del(tmp);
+	if (ft_lstsize(li) <= 1)
+		return (1);
+	while (li->next && (int)li->content == (int)li->next->content)
+		li = li->next;
+	if (li->next == NULL)
+		return (1);
+	sens = (int)li->next->content > (int)li->content ? 1 : 0;
+	while (li && li->next)
+	{
+		
+		if (sens && (int)li->next->content < (int)li->content)
+			return (0);
+		if (!sens && (int)li->next->content > (int)li->content)
+			return (0);
+		/*
+		if ((int)li->next->content < (int)li->content)
+			return (0);
+		*/
+		li = li->next;
+	}
+	if (sens == 0)
+		return (-1);
+	else
+		return (1);
 }
 
-/*
-**	ra/rb/rr
-*/
-
-void	shift_up(t_list **li)
+int	lst_cmp(t_list *li_a, t_list *li_b)
 {
-	t_list	*new;
-	void	*tmp;
-
-	if (*li == NULL || ft_lstsize(*li) < 2)
-		return ;
-	tmp = ft_lstshift(*li);
-	new = ft_lstnew(tmp);
-	ft_lstadd_front(li, new);
-	ft_del(tmp);
+	if (ft_lstsize(li_a) != ft_lstsize(li_b))
+		return (0);
+	while (li_a && li_b)
+	{
+		if ((int)li_a->content != (int)li_b->content)
+			return (0);
+		li_b = li_b->next;
+		li_a = li_a->next;
+	}
+	return (1);
 }
 
-/*
-**	rra/rrb/rrr
-*/
-
-void	shift_down(t_list **li)
+t_list	*list_min(t_list *li)
 {
-	t_list	*new;
-	void	*tmp;
+	t_list *res;
+	t_list *tmp;
 
-	if (*li == NULL || ft_lstsize(*li) < 2)
-		return ;
-	tmp = ft_lstpop(li);
-	new = ft_lstnew(tmp);
-	ft_lstadd_back(li, new);
-	ft_del(tmp);
+	res = li;
+	while (li)
+	{
+		tmp = li;
+		while (tmp)
+		{
+			if ((int)res->content > (int)tmp->content)
+				res = tmp;
+			tmp = tmp->next;
+		}
+		li = li->next;
+	}
+	/*
+	if (res != NULL)
+		res->next = NULL;
+	*/
+	return (res);
 }
 
-/*
-**	 pa/pb
-*/
-
-void	transfer_top(t_list **li_a, t_list **li_b)
+t_list	*list_max(t_list *li)
 {
-	void	*tmp;
+	t_list *res;
+	t_list *tmp;
 
-	if (*li_a == NULL)
-		return ;
-	tmp = ft_lstpop(li_a);
-	ft_lstadd_front(li_b, ft_lstnew(tmp));
-	ft_del(tmp);
+	res = li;
+	while (li)
+	{
+		tmp = li;
+		while (tmp)
+		{
+			if ((int)res->content < (int)tmp->content)
+				res = tmp;
+			tmp = tmp->next;
+		}
+		li = li->next;
+	}
+	return (res);
 }
