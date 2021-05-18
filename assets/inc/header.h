@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexdnz <alexdnz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/15 18:32:03 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/16 17:38:36 by alexdnz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	process_5(t_list **li_a, t_list **li_b);
 void	process_100(t_list **li_a, t_list **li_b);
 
 void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens);
+void	sort_3_head(t_list **li, int verbose);
+void	rev_sort_3_head(t_list **li, int verbose);
 
 void	register_add_back(t_register **alst, t_register *new);
 

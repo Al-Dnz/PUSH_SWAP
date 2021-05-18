@@ -82,6 +82,24 @@ void	drain_by_max(t_list **li_b, t_list **li_a)
 	}
 }
 
+void process_chunk_head(t_list **li_1, t_list **li_2, int size, int sens)
+{
+	// li_a
+	if (sens == 0)
+	{
+		if (size == 2 && (int)(*li_1)->content > (int)(*li_1)->next->content)
+			swap_list(*li_1, 1);
+		if (size ==  3)
+			sort_3_head(li_1, 1);
+	}
+	// li_b
+	else
+	{
+		if (size == 2)
+	}
+	
+}
+
 void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens)
 {
 	int		reminder;
@@ -90,8 +108,14 @@ void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens)
 	int		median;
 
 	verbose = 1 + sens;
-	if (size == 0)
-		return ;
+	if (size < 4)
+	{
+
+			return;
+	}
+	
+	
+
 	reminder = 0;
 	new_size  = 0;
 	median = (int)find_chunk_median(*li_1, size)->content;
@@ -105,15 +129,78 @@ void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens)
 		else
 		{ 
 			reminder++;
-			shift_up(li_1, verbose);
+			shift_down(li_1, verbose);
 		}
 	}
 	
 	sens = 1 - sens;
 	while (reminder--)
-		shift_down(li_1, sens);
+		shift_up(li_1, sens);
 	process_chunk(li_2, li_1, new_size, sens);
 	
+}
+
+void	sort_3_head(t_list **li, int verbose)
+{
+	int a;
+	int b;
+	int c;
+
+	a = (int)(*li)->content;
+	b = (int)(*li)->next->content;
+	c = (int)(*li)->next->next->content;
+	if (a > b && b < c && c > a)
+			swap_list(*li, verbose);
+	if (b > a && b > c)
+	{
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		
+		if (a > c)
+			swap_list(*li, verbose);
+		
+		return;
+	}
+	if (a > b && a > c)
+	{
+		swap_list(*li, verbose);
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		if (b > c)
+			swap_list(*li, verbose);
+	}
+}
+
+void	rev_sort_3_head(t_list **li, int verbose)
+{
+	int a;
+	int b;
+	int c;
+
+	a = (int)(*li)->content;
+	b = (int)(*li)->next->content;
+	c = (int)(*li)->next->next->content;
+	if (a < b && a < c)
+	{
+		swap_list(*li, verbose);
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		if (b < c)
+			swap_list(*li, verbose);
+	}
+	if (b < a && b < c)
+	{
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		if (a < c)
+			swap_list(*li, verbose);
+	}
+	if (a < b && b > c && c < 1)
+		swap_list(*li, verbose);
 }
 
 void	process_100(t_list **li_a, t_list **li_b)
