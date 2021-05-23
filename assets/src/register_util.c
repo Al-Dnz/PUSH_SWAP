@@ -73,7 +73,6 @@ t_register	*register_new(int n)
 	return (li);
 }
 
-
 void	display_register(t_register *li)
 {
 	while (li != NULL)

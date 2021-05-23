@@ -126,6 +126,22 @@ int	optimized_shift(t_list *li, t_list *list_inf)
 		return (1);
 }
 
+
+int	dist_to_lst(t_list *li, t_list *list)
+{
+	int dist;
+
+	dist = 1;
+	while (li)
+	{
+		if (li == list)
+			return (dist);
+		dist++;
+		li = li->next;
+	}
+	return (dist);
+}
+
 void	bring_back(t_list **li_a, t_list **li_b)
 {
 	while (*li_b != NULL)

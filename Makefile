@@ -13,6 +13,7 @@ SRCS 		=	list_util.c \
 				process.c \
 				process_util.c \
 				big_process.c \
+				big_process_util.c \
 				short_process.c \
 				register_util.c
 
