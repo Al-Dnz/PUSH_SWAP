@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:25:42 by alexdnz           #+#    #+#             */
-/*   Updated: 2021/05/15 15:28:57 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/24 00:58:30 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	process_100(t_list **li_a, t_list **li_b)
 		else if ((*li_b)->next == tmp)
 		{
 			swap_list(*li_b, 2);
-			t ransfer_top(li_b, li_a, 2);
+			transfer_top(li_b, li_a, 2);
 		}	
 		else if (optimized_shift(*li_b, tmp))	
 			shift_up(li_b, 2);

@@ -15,7 +15,8 @@ SRCS 		=	list_util.c \
 				big_process.c \
 				big_process_util.c \
 				short_process.c \
-				register_util.c
+				register_util.c \
+				list_sorter.c \
 
 LIBFT_DIR	= 	./libft
 LIB			= 	./libft/libft.a

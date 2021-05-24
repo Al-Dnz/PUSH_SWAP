@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/21 14:41:53 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/24 13:47:39 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	list_generator(t_list **li, char **tab, int *error);
 int		duplicate_error(t_list *li);
 void	parser(t_list **li, int argc, char **argv, int *error);
 void	display_list(t_list *li);
+void	visual_list(t_list *li);
+
 
 void	swap_list(t_list *li, int verbose);
 void	shift_up(t_list **li, int verbose);
@@ -70,6 +72,7 @@ t_list	*list_min(t_list *li);
 t_list	*list_max(t_list *li);
 t_list	*chunk_max(t_list *li, int size);
 t_list	*chunk_min(t_list *li, int size);
+void	lst_cpy(t_list **dest, t_list *li, int size);
 
 int	optimized_shift(t_list *li, t_list *list_inf);
 int	dist_to_lst(t_list *li, t_list *list);
@@ -111,5 +114,7 @@ void	register_clear(t_register **lst);
 void	register_pop(t_register **head_ref);
 t_register	*register_new(int n);
 void	display_register(t_register *li);
+
+void list_merge_sort(t_list** head_ref);
 
 #endif

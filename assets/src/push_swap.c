@@ -6,11 +6,42 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:13:29 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/21 22:56:34 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/24 20:42:52 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	treat_min(t_list **li_b, t_list **li_a, t_list *li_min)
+{
+	int sens;
+
+	sens = optimized_shift(*li_b, li_min);
+	while ((int)(*li_b)->content != (int)li_min->content)
+	{
+		if (sens == 0)
+			shift_down(li_b, 2);
+		else
+			shift_up(li_b, 2);
+	}
+	transfer_top(li_b, li_a, 2);
+	shift_down(li_a, 1);
+}
+
+void	treat_max(t_list **li_b, t_list **li_a, t_list *li_max)
+{
+	int sens;
+
+	sens = optimized_shift(*li_b, li_max);
+	while ((int)(*li_b)->content != (int)li_max->content)
+	{
+		if ( sens == 0)
+			shift_down(li_b, 2);
+		else
+			shift_up(li_b, 2);
+	}
+	transfer_top(li_b, li_a, 2);
+}
 
 int	main(int argc, char **argv)
 {
@@ -53,48 +84,57 @@ int	main(int argc, char **argv)
 	ledger = NULL;
 	t_register *new_ledger;
 	new_ledger = NULL;
+	t_list *ch_min;
+	t_list *ch_max;
+	t_list *temp;
+
+	temp = NULL;
 	
+	ch_min = NULL;
+	ch_max = NULL;
 	
 	brut_sort(&li_a, &li_b, &ledger);
 	process_3(&li_a, &li_b);
-
-	int size;
-	int ch_min;
-	int ch_max;
+	
 	int reminder;
 	while (ledger)
 	{
-		size = ledger->n;
-		ch_min = chunk_min(li_b, size);
-		ch_max = chunk_max(li_b, size);
-		
+		lst_cpy(&temp, li_b, ledger->n);
+		list_merge_sort(&temp);
+
 		reminder = 0;
-		if (dist_to_lst(li_b, ch_min) < dist_to_lst(li_b, ch_max))
+		while (temp != NULL)
 		{
-			while (li_b != ch_min)
-			{
-				reminder++;
-				shift_down(&li_b, 2);
-			}
-			transfer_top(&li_b, &li_a, 2);
-			shift_down(&li_a, 1);
+			ch_min = temp;
+			ch_max = ft_lstlast(temp);
+			//treat_max(&li_b, &li_a, ch_max);
+			//ft_lstclear(&ch_max, ft_del);
+			printf("****************************************\n(%d)\n", (int)ch_min->content);
+			ft_lstpop(&temp);
+			
 		}
-		else
-		{
-			while (li_b != ch_max)
-			{
-				reminder++;
-				shift_down(&li_b, 2);
-			}
-			transfer_top(&li_b, &li_a, 2);
-		}
-		//drain_by_max(&li_b, &li_a, size);
-		size--;
+		while (reminder--)
+			shift_up(&li_a, 1); 
+		
+		
+		
 		ledger = ledger->next;
 	}
+	
+	
+	ft_putstr_fd("********************************\n", 1);
 	display_list(li_a);
-	display_list(li_b);
+	//display_list(li_b);
+	ft_putstr_fd("********************************\n", 1);
+	ft_lstshift(li_a);
+	display_list(li_a);
+	ft_lstshift(li_a);
+	display_list(li_a);
+
+	
+
 	printf("OPERATION_COUNT => [%d]\n", g_accumulator);
+	//visual_list(li_a);
 	return (quit(&li_a, &li_b, error));
 }
 
@@ -138,5 +178,81 @@ while (ledger)
 		}
 		register_pop(&ledger);
 	}
-	*/
+
+
+
+
+
+
+if (dist_to_lst(li_b, ch_min) < dist_to_lst(li_b, ch_max))
+		{
+			while (li_b != ch_min)
+			{
+				reminder++;
+				shift_down(&li_b, 2);
+			}
+			transfer_top(&li_b, &li_a, 2);
+			shift_down(&li_a, 1);
+		}
+		else
+		{
+			while (li_b != ch_max)
+			{
+				reminder++;
+				shift_down(&li_b, 2);
+			}
+			transfer_top(&li_b, &li_a, 2);
+		}
+
+
+ft_putstr_fd("----------------------------------\n", 1);
+		
+		//display_list(temp);
+		while ((ledger->n)--)
+			transfer_top(&li_b, &li_a, 0);
+		//list_merge_sort(&li_b);
+		ft_putstr_fd("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n", 1);
+		display_list(li_b);
+		ft_lstclear(&temp, ft_del);
+
+
+
+
+
+
+
+
+printf("****************************\n(%d)\n",(int)ch_min->content);
+			printf("min(%d)\n",(int)ch_min->content);
+			printf("max(%d)\n",(int)ch_max->content);
+			printf("dist(%d)\n",dist_to_lst(li_b, ch_min));
+			ft_lstpop(&temp);
+			
+			if (1)//dist_to_lst(li_b, ch_min) < dist_to_lst(li_b, ch_max))
+			{
+				reminder++;
+				treat_min(&li_b, &li_a, ch_min);
+				ft_lstpop(&temp);
+			}	
+			else
+			{
+				treat_max(&li_b, &li_a, ch_max);
+				ft_lstshift(temp);
+			}
+
+
+
+	//if (dist_to_lst(li_b, ch_min) >= dist_to_lst(li_b, ch_max))
+			if (1)
+			{
+				reminder++;
+				treat_min(&li_b, &li_a, ch_min);
+				ft_lstpop(&temp);
+			}	
+			else
+			{
+				treat_max(&li_b, &li_a, ch_max);
+				ft_lstclear(&ch_max, ft_del);
+			}		
+*/
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -27,7 +27,6 @@ void	brut_sort(t_list **li_a, t_list **li_b, t_register **ledger)
 			shift_up(li_a, 1);
 		}
 		first = 0;
-		printf("N = %d\n", n);
 		register_add_front(ledger, register_new(n));
 		size2 = ft_lstsize(*li_a);
 	}

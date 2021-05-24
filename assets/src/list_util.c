@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/21 11:18:09 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/24 14:55:19 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@ void	display_list(t_list *li)
 		ft_putstr_fd("[", 1);
 		ft_putnbr_fd((int)li->content, 1);
 		ft_putstr_fd("]->", 1);
+		li = li->next;
+	}
+	ft_putstr_fd("NULL\n", 1);
+}
+
+void	visual_list(t_list *li)
+{
+	int	n;
+	while (li != NULL)
+	{
+		n  = (int)li->content;
+		while (n--)
+			ft_putchar_fd('_', 1);
+		ft_putchar_fd('\n', 1);
 		li = li->next;
 	}
 	ft_putstr_fd("NULL\n", 1);
@@ -154,4 +168,16 @@ t_list	*chunk_max(t_list *li, int size)
 		li = li->next;
 	}
 	return (res);
+}
+
+void	lst_cpy(t_list **dest, t_list *li, int size)
+{
+	t_list *temp;
+
+	while (size--) 
+	{
+		temp = ft_lstnew(li->content);
+		ft_lstadd_back(dest, temp);
+		li = li->next;
+	}
 }
