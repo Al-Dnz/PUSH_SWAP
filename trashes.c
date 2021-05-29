@@ -48,7 +48,7 @@ void	sort_rest_chunk(t_list **li_1, t_list **li_2)
 		transfer_top(li_2, li_1, 2);
 }
 
-void	reduce_by_med(t_list **li_1, t_list **li_2, int sens, int size, t_register **temp)
+void	reduce_by_med(t_list **li_1, t_list **li_2, int sens, int size, t_register **temp);
 
 void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens)
 {
@@ -297,3 +297,398 @@ void	process_100(t_list **li_a, t_list **li_b)
 }
 
 
+void	drain_by_max(t_list **li_b, t_list **li_a, int size);
+int		max_arr(int *arr, int size);
+int		count_sort(t_list *li);
+void	divide_from_median(t_list **li_a, t_list **li_b);
+
+void	adjust_list_b(t_list **li_b, int first)
+{
+	static int initialised;
+	static int	li_min;
+	static int	li_max;
+
+	if (initialised == 0)
+	{
+		li_min = (int)(*li_b)->content;
+		li_max = (int)(*li_b)->content;
+	}
+	if ((int)(*li_b)->content > li_max)
+		li_max = (int)(*li_b)->content;
+	else if ((int)(*li_b)->content < li_min && first)
+	{
+		li_min = (int)(*li_b)->content;
+		shift_down(li_b, 2);
+	}
+	else if ((*li_b)->next && (int)(*li_b)->content < (int)(*li_b)->next->content && (int)(*li_b)->content > li_min)
+		swap_list(*li_b, 2);
+	initialised = 1;	
+}
+
+void	drain_by_max(t_list **li_b, t_list **li_a, int size)
+{
+	t_list *tmp;
+	(void)size;
+
+	while(*li_b)
+	{
+		//tmp = chunk_max(*li_b, size);
+		tmp = list_max(*li_b);
+		if  (*li_b == tmp)
+			transfer_top(li_b, li_a, 2);
+		else if ((*li_b)->next == tmp)
+		{
+			swap_list(*li_b, 2);
+			transfer_top(li_b, li_a, 2);
+		}	
+		else if (optimized_shift(*li_b, tmp))	
+			shift_up(li_b, 2);
+		else
+			shift_down(li_b, 2);
+	}
+}
+
+void	drain_by_min(t_list **li_b, t_list **li_a, int size)
+{
+	t_list *tmp;
+
+	while(*li_b)
+	{
+		tmp = chunk_min(*li_b, size);
+		if  (*li_b == tmp)
+			transfer_top(li_b, li_a, 2);
+		else if ((*li_b)->next == tmp)
+		{
+			swap_list(*li_b, 2);
+			transfer_top(li_b, li_a, 2);
+		}	
+		else if (optimized_shift(*li_b, tmp))	
+			shift_up(li_b, 2);
+		else
+			shift_down(li_b, 2);
+	}
+}
+
+int		max_arr(int *arr, int size)
+{
+	int max;
+	int i;
+
+	i = 0;
+	max  = arr[0];
+	while (i < size)
+	{
+		if (arr[i] > max)
+			max = arr[i];
+		i++;
+	}
+	return (max);
+}
+
+int		count_sort(t_list *li)
+{
+	int size;
+	int *arr;
+	int i;
+	
+	size  = ft_lstsize(li);
+	if (!(arr = malloc(sizeof(int) * size)))
+		return (-1);
+	i = 0;
+	while (i < size)
+	{
+		arr[i++] = (int)li->content;
+		li = li->next;
+	}
+	i = size - 1;
+	while (i >= 0)
+	{
+		if (arr[i] != max_arr(arr, i + 1))
+			break;
+		i--;
+	}
+	free(arr);
+	return (i+ 1);
+}
+
+
+
+
+void	divide_from_median(t_list **li_a, t_list **li_b)
+{
+	t_list	*list_inf;
+	int size;
+
+	size = ft_lstsize(*li_a);
+
+	while (ft_lstsize(*li_a) > size / 2)
+	{
+		list_inf = list_min(*li_a);
+		while (*li_a != list_inf)
+		{
+				if (optimized_shift(*li_a, list_inf))
+				{
+					g_accumulator++;
+					shift_up(li_a, 1);
+				}	
+				else
+				{
+					g_accumulator++;
+					shift_down(li_a, 1);
+				}
+		}
+		g_accumulator++;
+		transfer_top(li_a, li_b, 1);
+	}
+}
+
+void	sort_3_head(t_list **li, int verbose);
+void	rev_sort_3_head(t_list **li, int verbose);
+int		chunk_is_sort(t_list *li, int n);
+
+int	chunk_is_sort(t_list *li, int n)
+{
+	int		sens;
+
+	if (ft_lstsize(li) <= 1)
+		return (1);
+	while (li->next && (int)li->content == (int)li->next->content)
+		li = li->next;
+	if (li->next == NULL)
+		return (1);
+	sens = (int)li->next->content > (int)li->content ? 1 : 0;
+	while (n--&& li && li->next)
+	{
+		
+		if (sens && (int)li->next->content < (int)li->content)
+			return (0);
+		if (!sens && (int)li->next->content > (int)li->content)
+			return (0);
+		/*
+		if ((int)li->next->content < (int)li->content)
+			return (0);
+		*/
+		li = li->next;
+	}
+	if (sens == 0)
+		return (-1);
+	else
+		return (1);
+}
+
+void	sort_3_head(t_list **li, int verbose)
+{
+	int a;
+	int b;
+	int c;
+
+	a = (int)(*li)->content;
+	b = (int)(*li)->next->content;
+	c = (int)(*li)->next->next->content;
+	if (a > b && b < c && c > a)
+			swap_list(*li, verbose);
+	if (b > a && b > c)
+	{
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		
+		if (a > c)
+			swap_list(*li, verbose);
+		return;
+	}
+	if (a > b && a > c)
+	{
+		swap_list(*li, verbose);
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		if (b > c)
+			swap_list(*li, verbose);
+	}
+}
+
+void	rev_sort_3_head(t_list **li, int verbose)
+{
+	int a;
+	int b;
+	int c;
+
+	a = (int)(*li)->content;
+	b = (int)(*li)->next->content;
+	c = (int)(*li)->next->next->content;
+	if (a < b && a < c)
+	{
+		swap_list(*li, verbose);
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		if (b < c)
+			swap_list(*li, verbose);
+	}
+	if (b < a && b < c)
+	{
+		shift_down(li, verbose);
+		swap_list(*li, verbose);
+		shift_up(li, verbose);
+		if (a < c)
+			swap_list(*li, verbose);
+	}
+	if (a < b && b > c && c < 1)
+		swap_list(*li, verbose);
+}
+
+
+t_list	*find_median_initial(t_list *li)
+{
+	t_list	*tmp;
+	t_list	*tmp2;
+	int		inf;
+	int		sup;
+
+	tmp = li;
+	while (tmp)
+	{
+		inf = 0;
+		sup = 0;
+		tmp2 = li;
+		while (tmp2)
+		{
+			if ((int)tmp->content < (int)tmp2->content)
+				sup++;
+			if ((int)tmp->content > (int)tmp2->content)
+				inf++;
+			tmp2 = tmp2->next;
+		}
+		if (inf <= ft_lstsize(li) / 2 && sup <= ft_lstsize(li) / 2)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+void	divide_list(t_list **li_a, t_list **li_b);
+
+void	divide_list(t_list **li_a, t_list **li_b)
+{
+	int median;
+	int	size;
+
+	size = ft_lstsize(*li_a);
+	median = (int)find_median(*li_a)->content;
+	while (size--)
+	{
+		if (median < (int)(*li_a)->content)
+			transfer_top(li_a, li_b, 1);
+		shift_up(li_a, 1);
+	}
+}
+
+t_list	*pivot_list(t_list *li, int n);
+t_list	*find_chunk_median(t_list *li, int size);
+
+t_list	*find_chunk_median(t_list *li, int size)
+{
+	t_list	*tmp;
+	t_list	*tmp2;
+	int		n;
+	int		inf;
+	int		sup;
+
+	n = size;
+	tmp = li;
+	while (n-- && tmp)
+	{
+		inf = 0;
+		sup = 0;
+		tmp2 = li;
+		while (tmp2)
+		{
+			if ((int)tmp->content < (int)tmp2->content)
+				sup++;
+			if ((int)tmp->content > (int)tmp2->content)
+				inf++;
+			tmp2 = tmp2->next;
+		}
+		if (sup >= size / 2)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+t_list	*pivot_list(t_list *li, int n)
+{
+	t_list	*tmp;
+	t_list	*tmp2;
+	int		inf;
+	int		sup;
+
+	tmp = li;
+	while (tmp)
+	{
+		inf = 0;
+		sup = 0;
+		tmp2 = li;
+		while (tmp2)
+		{
+			if ((int)tmp->content < (int)tmp2->content)
+				sup++;
+			if ((int)tmp->content > (int)tmp2->content)
+				inf++;
+			tmp2 = tmp2->next;
+		}
+		if (inf <= ft_lstsize(li) / n && sup <= (n - 1) * ft_lstsize(li) / n)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+
+t_list	*chunk_max(t_list *li, int size);
+t_list	*chunk_min(t_list *li, int size);
+
+t_list	*chunk_min(t_list *li, int size)
+{
+	t_list *res;
+	t_list *tmp;
+
+	res = li;
+	while (li && size--)
+	{
+		tmp = li;
+		while (tmp)
+		{
+			if ((int)res->content > (int)tmp->content)
+				res = tmp;
+			tmp = tmp->next;
+		}
+		li = li->next;
+	}
+	/*
+	if (res != NULL)
+		res->next = NULL;
+	*/
+	return (res);
+}
+
+t_list	*chunk_max(t_list *li, int size)
+{
+	t_list *res;
+	t_list *tmp;
+
+	res = li;
+	while (li && size--)
+	{
+		tmp = li;
+		while (tmp)
+		{
+			if ((int)res->content < (int)tmp->content)
+				res = tmp;
+			tmp = tmp->next;
+		}
+		li = li->next;
+	}
+	return (res);
+}

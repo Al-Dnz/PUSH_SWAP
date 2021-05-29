@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 13:47:27 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/09 21:02:33 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/29 18:57:48 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,4 @@ void	switcher(char *str, t_list **li_a, t_list **li_b)
 		pusher(str, li_a, li_b);
 	if (str[0] == 'r')
 		rotater(str, li_a, li_b);
-	display_list(*li_a);
-	display_list(*li_b);
 }

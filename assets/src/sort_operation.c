@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:22:41 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/15 17:45:10 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/24 21:21:30 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	shift_up(t_list **li, int verbose)
 
 	if (*li == NULL || ft_lstsize(*li) < 2)
 		return ;
-	tmp = ft_lstshift(*li);
+	tmp = ft_lstshift(li);
 	new = ft_lstnew(tmp);
 	ft_lstadd_front(li, new);
 	ft_del(tmp);

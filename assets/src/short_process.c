@@ -2,7 +2,6 @@
 
 void	process_2(t_list **li_a, t_list **li_b)
 {
-	printf("PROCESS_2\n");
 	(void)li_b;
 	if (lst_is_sort(*li_a) < 1)
 		swap_list(*li_a, 1);
@@ -40,7 +39,6 @@ void	process_3(t_list **li_a, t_list **li_b)
 	(void)li_b;
 	int	sens;
 	
-	printf("PROCESS_3\n");
 	if (forbidden_seq(*li_a))
 		swap_list(*li_a, 1);
 	sens = optimized_shift(*li_a, list_min(*li_a));
@@ -55,7 +53,6 @@ void	process_3(t_list **li_a, t_list **li_b)
 
 void	process_5(t_list **li_a, t_list **li_b)
 {
-	printf("PROCESS_5\n");
 	sort_by_push(li_a, li_b);
 	process_3(li_a, li_b);
 	bring_back(li_a, li_b);

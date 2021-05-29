@@ -10,7 +10,7 @@ SRCS 		=	list_util.c \
 				get_instruct.c \
 				exit_util.c \
 				flag_util.c \
-				process.c \
+				switch_pushswap.c \
 				process_util.c \
 				big_process.c \
 				big_process_util.c \
