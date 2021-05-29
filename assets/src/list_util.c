@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/29 12:42:48 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/29 20:02:40 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,50 +113,6 @@ t_list	*list_max(t_list *li)
 
 	res = li;
 	while (li)
-	{
-		tmp = li;
-		while (tmp)
-		{
-			if ((int)res->content < (int)tmp->content)
-				res = tmp;
-			tmp = tmp->next;
-		}
-		li = li->next;
-	}
-	return (res);
-}
-
-t_list	*chunk_min(t_list *li, int size)
-{
-	t_list *res;
-	t_list *tmp;
-
-	res = li;
-	while (li && size--)
-	{
-		tmp = li;
-		while (tmp)
-		{
-			if ((int)res->content > (int)tmp->content)
-				res = tmp;
-			tmp = tmp->next;
-		}
-		li = li->next;
-	}
-	/*
-	if (res != NULL)
-		res->next = NULL;
-	*/
-	return (res);
-}
-
-t_list	*chunk_max(t_list *li, int size)
-{
-	t_list *res;
-	t_list *tmp;
-
-	res = li;
-	while (li && size--)
 	{
 		tmp = li;
 		while (tmp)
