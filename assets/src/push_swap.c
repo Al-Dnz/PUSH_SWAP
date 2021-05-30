@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:13:29 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/29 18:29:44 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/05/29 20:18:46 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	main(int argc, char **argv)
 	
 	switch_process(&li_a, &li_b);
 	
-	//ft_putstr_fd("********************************\n", 1);
-	//display_list(li_a);
-	//display_list(li_b);
+	ft_putstr_fd("********************************\n", 1);
+	display_list(li_a);
+	display_list(li_b);
 	
 	//printf("OPERATION_COUNT => [%d]\n", g_accumulator);
 	return (quit(&li_a, &li_b, error));
