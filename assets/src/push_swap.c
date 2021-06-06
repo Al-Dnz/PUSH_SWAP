@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:42:01 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/06 16:31:14 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/06 17:28:13 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	switch_process(&state);
 	read_seq(state.seq);
 	
-	display_list(state.li_a);
+	//display_list(state.li_a);
 	//display_list(state.li_b);
 	
 	//printf("OPERATION_COUNT => [%d]\n", g_accumulator);

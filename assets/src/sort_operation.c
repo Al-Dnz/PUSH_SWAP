@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:22:41 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/06 16:02:11 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/06 17:27:47 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 void	swap_list(t_list *li, int verbose, t_state *state)
 {
 	g_accumulator++;
+	t_register	*last_seq;
 	void	*tmp;
 
 	if (li == NULL || li->next == NULL)
@@ -27,11 +28,11 @@ void	swap_list(t_list *li, int verbose, t_state *state)
 	li->content = li->next->content;
 	li->next->content = tmp;
 	ft_del(tmp);
-
-	if (verbose == 1 && state->seq && state->seq->n == 2)
-		register_last(state->seq)->n = 3;
-	else if (verbose == 2  && state->seq && state->seq->n == 1)
-		register_last(state->seq)->n = 3;
+	last_seq = register_last(state->seq);
+	if (verbose == 1 && last_seq && last_seq->n == 2)
+		last_seq->n = 3;
+	else if (verbose == 2  && last_seq && last_seq->n == 1)
+		last_seq->n = 3;
 	else if (verbose == 1 || verbose == 2)
 		register_add_back(&state->seq, register_new(verbose));
 }
@@ -52,8 +53,9 @@ void	double_swap_list(t_list *li_a, t_list *li_b, int verbose, t_state *state)
 void	shift_up(t_list **li, int verbose, t_state *state)
 {
 	g_accumulator++;
-	t_list	*new;
-	void	*tmp;
+	t_list			*new;
+	t_register	*last_seq;
+	void				*tmp;
 
 	if (*li == NULL || ft_lstsize(*li) < 2)
 		return ;
@@ -61,11 +63,12 @@ void	shift_up(t_list **li, int verbose, t_state *state)
 	new = ft_lstnew(tmp);
 	ft_lstadd_front(li, new);
 	ft_del(tmp);
-	if (verbose == 1 && state->seq  && state->seq->n == 7)
-		register_last(state->seq)->n = 8;
+	last_seq = register_last(state->seq);
+	if (verbose == 1 && last_seq && last_seq->n == 7)
+		last_seq->n = 8;
 		//ft_putstr_fd("ra\n", 1);
-	else if (verbose == 2  && state->seq && state->seq->n == 6)
-		register_last(state->seq)->n = 8;
+	else if (verbose == 2  && last_seq && last_seq->n == 6)
+		last_seq->n = 8;
 	else if (verbose == 1 || verbose == 2)
 		register_add_back(&state->seq, register_new(verbose + 5));
 		//ft_putstr_fd("rb\n", 1);
@@ -89,6 +92,7 @@ void	shift_down(t_list **li, int verbose, t_state *state)
 {
 	g_accumulator++;
 	t_list	*new;
+	t_register	*last_seq;
 	void	*tmp;
 
 	if (*li == NULL || ft_lstsize(*li) < 2)
@@ -97,11 +101,12 @@ void	shift_down(t_list **li, int verbose, t_state *state)
 	new = ft_lstnew(tmp);
 	ft_lstadd_back(li, new);
 	ft_del(tmp);
-	if (verbose == 1   && state->seq && state->seq->n == 10)
-		register_last(state->seq)->n = 11;
+	last_seq = register_last(state->seq);
+	if (verbose == 1   && last_seq && last_seq->n == 10)
+		last_seq->n = 11;
 		//ft_putstr_fd("rra\n", 1);
-	else if (verbose == 2  && state->seq && state->seq->n == 9)
-		register_last(state->seq)->n = 11;
+	else if (verbose == 2  && last_seq && last_seq->n == 9)
+		last_seq->n = 11;
 		//ft_putstr_fd("rrb\n", 1);
 	else if (verbose == 1 || verbose == 2)
 		register_add_back(&state->seq, register_new(verbose + 8));
