@@ -85,3 +85,16 @@ void	display_register(t_register *li)
 	ft_putstr_fd("NULL\n", 1);
 }
 
+void	read_seq(t_register *reg)
+{
+	static char *arr[12] = {"", "sa", "sb", "ss", "pa", "pb", "ra", "rb",
+"rr", "rra", "rrb", "rrr"};
+
+	while (reg != NULL)
+	{
+		ft_putstr_fd(arr[reg->n], 1);
+		ft_putstr_fd("\n", 1);
+		reg = reg->next;
+	}
+}
+

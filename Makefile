@@ -6,10 +6,8 @@ MAIN_FILE2	= 	assets/src/push_swap.c
 SRCS 		=	list_util.c \
 				sort_operation.c \
 				parser_util.c \
-				switch_checker.c \
 				get_instruct.c \
 				exit_util.c \
-				flag_util.c \
 				switch_pushswap.c \
 				process_util.c \
 				big_process.c \
@@ -17,6 +15,7 @@ SRCS 		=	list_util.c \
 				short_process.c \
 				register_util.c \
 				list_sorter.c \
+				switch_checker.c \
 
 LIBFT_DIR	= 	./libft
 LIB			= 	./libft/libft.a

@@ -1,6 +1,6 @@
 #include "header.h"
 
-void	sort_by_push(t_list **li_a, t_list **li_b)
+void	sort_by_push(t_list **li_a, t_list **li_b, t_state *state)
 {
 	t_list	*list_inf;
 
@@ -12,20 +12,20 @@ void	sort_by_push(t_list **li_a, t_list **li_b)
 				if (optimized_shift(*li_a, list_inf))
 				{
 					g_accumulator++;
-					shift_up(li_a, 1);
+					shift_up(li_a, 1, state);
 				}	
 				else
 				{
 					g_accumulator++;
-					shift_down(li_a, 1);
+					shift_down(li_a, 1, state);
 				}
 		}
 		g_accumulator++;
-		transfer_top(li_a, li_b, 1);
+		transfer_top(li_a, li_b, 1, state);
 	}
 }
 
-void insertion_sort(t_list **li)
+void insertion_sort(t_list **li, t_state *state)
 {
 		while (lst_is_sort(*li) < 1)
 		{
@@ -33,45 +33,43 @@ void insertion_sort(t_list **li)
 			{
 				g_accumulator++;
 				printf("sa\n");
-				swap_list(*li, 1);
+				swap_list(*li, 1, state);
 			}
 			g_accumulator++;
 			printf("rra\n");
-			shift_down(li, 1);
+			shift_down(li, 1, state);
 		}
 }	
 
-void	switch_process(t_list **li_a, t_list **li_b)
+void	switch_process(t_state *state)
 {
 	g_accumulator = 0;
-
 	int size;
 	
-	size = ft_lstsize(*li_a);
-	if (lst_is_sort(*li_a) == 1)
+	size = ft_lstsize((state->li_a));
+	if (lst_is_sort((state->li_a)) == 1 || size == 1)
 		return ;
-	if (size == 1)
-		return;
 	if (size == 2)
 	{
-		process_2(li_a, li_b);
+		process_2(state);
 		return;
 	}	
 	if (size == 3)
 	{
-		process_3(li_a, li_b);
+		process_3(state);
 		return;
 	}
 	if (size < 60)
 	{
-		process_5(li_a, li_b);
+		process_5(state);
 		return;
 	}
 	if (size <= 1000)
 	{
-		process_100(li_a, li_b);
+		process_100(state);
 		return;
 	}
+	
 }
 
 

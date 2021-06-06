@@ -5,24 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/30 22:13:29 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/29 20:18:46 by adenhez          ###   ########.fr       */
+/*   Created: 2021/06/04 16:42:01 by adenhez           #+#    #+#             */
+/*   Updated: 2021/06/06 16:31:14 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-
-
 int	main(int argc, char **argv)
 {
-	t_list	*li_a;
-	t_list	*li_b;
-	//t_state	state;
+	t_state	state;
 	int		error;
 
-	li_a = NULL;
-	li_b = NULL;
+	state.li_a = NULL;
+	state.li_b = NULL;
+	state.seq = NULL;
 	error = 0;
 	if (argc == 1)
 		return (0);
@@ -31,21 +28,22 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
-	parser(&li_a, argc, argv, &error);
+	parser(&state.li_a, argc, argv, &error);
 	if (error)
-		return (quit(&li_a, &li_b, error));
+		return (quit(&state.li_a, &state.li_b, error));
 
-	//display_list(li_a);
-	//display_list(li_b);
+	//display_list(state.li_a);
+	//display_list(state.li_b);
+	//ft_putstr_fd("********************************\n", 1);
 	
-	switch_process(&li_a, &li_b);
+	switch_process(&state);
+	read_seq(state.seq);
 	
-	ft_putstr_fd("********************************\n", 1);
-	display_list(li_a);
-	display_list(li_b);
+	display_list(state.li_a);
+	//display_list(state.li_b);
 	
 	//printf("OPERATION_COUNT => [%d]\n", g_accumulator);
-	return (quit(&li_a, &li_b, error));
+	return (quit(&state.li_a, &state.li_b, error));
 }
 
 

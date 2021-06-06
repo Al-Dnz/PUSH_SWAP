@@ -1,5 +1,16 @@
-#include "header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process_util.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/04 17:11:56 by adenhez           #+#    #+#             */
+/*   Updated: 2021/06/06 14:41:04 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "header.h"
 
 t_list	*find_median(t_list *li)
 {
@@ -20,9 +31,6 @@ t_list	*find_median(t_list *li)
 	ft_lstclear(&temp, ft_del);
 	return (res);
 }
-
-
-
 
 int	optimized_shift(t_list *li, t_list *list_inf)
 {
@@ -49,7 +57,6 @@ int	optimized_shift(t_list *li, t_list *list_inf)
 		return (1);
 }
 
-
 int	dist_to_lst(t_list *li, t_list *list)
 {
 	int dist;
@@ -68,11 +75,11 @@ int	dist_to_lst(t_list *li, t_list *list)
 		return (dist);
 }
 
-void	bring_back(t_list **li_a, t_list **li_b)
+void	bring_back(t_list **li_a, t_list **li_b, t_state *state)
 {
 	while (*li_b != NULL)
 	{
 		g_accumulator++;
-		transfer_top(li_b, li_a, 2);
+		transfer_top(li_b, li_a, 2, state);
 	}
 }

@@ -1,10 +1,9 @@
 #include "header.h"
 
-void	process_2(t_list **li_a, t_list **li_b)
+void	process_2(t_state *state)
 {
-	(void)li_b;
-	if (lst_is_sort(*li_a) < 1)
-		swap_list(*li_a, 1);
+	if (lst_is_sort(state->li_a) < 1)
+		swap_list(state->li_a, 1, state);
 }
 
 int	forbidden_seq(t_list *li)
@@ -34,26 +33,27 @@ int	forbidden_seq(t_list *li)
 	return (0);
 }
 
-void	process_3(t_list **li_a, t_list **li_b)
+void	process_3(t_state *state)
 {
-	(void)li_b;
 	int	sens;
 	
-	if (forbidden_seq(*li_a))
-		swap_list(*li_a, 1);
-	sens = optimized_shift(*li_a, list_min(*li_a));
-	while (lst_is_sort(*li_a) < 1)
+	if (lst_is_sort(state->li_a) == 1)
+		return ;
+	if (forbidden_seq(state->li_a))
+		swap_list(state->li_a, 1, state);
+	sens = optimized_shift(state->li_a, list_min(state->li_a));
+	while (lst_is_sort(state->li_a) < 1)
 	{
 		if(sens == 0)
-			shift_down(li_a, 1);
+			shift_down(&state->li_a, 1, state);
 		else
-			shift_up(li_a, 1);
+			shift_up(&state->li_a, 1, state);
 	}
 }
 
-void	process_5(t_list **li_a, t_list **li_b)
+void	process_5(t_state *state)
 {
-	sort_by_push(li_a, li_b);
-	process_3(li_a, li_b);
-	bring_back(li_a, li_b);
+	sort_by_push(&state->li_a, &state->li_b, state);
+	process_3(state);
+	bring_back(&state->li_a, &state->li_b, state);
 }

@@ -19,17 +19,17 @@ int		find_med_of_med(t_list *li)
 	return (res);
 }
 
-void	adjust_list_b(t_list **li_b, int med_of_med, int first)
+void	adjust_list_b(t_list **li_b, int med_of_med, int first, t_state *state)
 {
 	
 	if ((int)(*li_b)->content <= med_of_med && first)
-		shift_down(li_b, 2);
+		shift_down(li_b, 2, state);
 	//else if(*li_b && (*li_b)->next && (int)(*li_b)->content < (int)(*li_b)->next->content)
 	//	swap_list(*li_b, 2);
 
 }
 
-void	brut_sort(t_list **li_a, t_list **li_b, t_register **ledger)
+void	brut_sort(t_list **li_a, t_list **li_b, t_register **ledger, t_state *state)
 {
 	t_list	*pivot;
 	int		first;
@@ -51,13 +51,13 @@ void	brut_sort(t_list **li_a, t_list **li_b, t_register **ledger)
 			
 			if ((int)(*li_a)->content < (int)pivot->content)
 			{
-				transfer_top(li_a, li_b, 1);
-				adjust_list_b(li_b, med_of_med, first);
+				transfer_top(li_a, li_b, 1, state);
+				adjust_list_b(li_b, med_of_med, first, state);
 				//if (first == 1)
 					//adjust_list_b(li_b, first);
 				n++;
 			}
-			shift_up(li_a, 1);
+			shift_up(li_a, 1, state);
 		}
 		first = 0;
 		register_add_front(ledger, register_new(n));
