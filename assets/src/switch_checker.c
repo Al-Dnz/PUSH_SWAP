@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 13:47:27 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/06 15:07:38 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/09 16:36:31 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	rotater(char *str, t_list **li_a, t_list **li_b, t_state *state)
 
 void	switcher(char *str, t_list **li_a, t_list **li_b)
 {
-	t_state state;
-	
+	t_state	state;
+
 	state.li_a = NULL;
 	state.li_b = NULL;
 	state.seq = NULL;

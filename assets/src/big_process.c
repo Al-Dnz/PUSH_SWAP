@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   big_process.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/09 16:38:37 by adenhez           #+#    #+#             */
+/*   Updated: 2021/06/09 16:41:20 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 void	treat_min(t_list **li_b, t_list **li_a, t_list *li_min, t_state *state)
 {
-	int sens;
+	int	sens;
 
 	sens = optimized_shift(*li_b, li_min);
 	while ((int)(*li_b)->content != (int)li_min->content)
@@ -18,12 +30,12 @@ void	treat_min(t_list **li_b, t_list **li_a, t_list *li_min, t_state *state)
 
 void	treat_max(t_list **li_b, t_list **li_a, t_list *li_max, t_state *state)
 {
-	int sens;
+	int	sens;
 
 	sens = optimized_shift(*li_b, li_max);
 	while ((int)(*li_b)->content != (int)li_max->content)
 	{
-		if ( sens == 0)
+		if (sens == 0)
 			shift_down(li_b, 2, state);
 		else
 			shift_up(li_b, 2, state);
@@ -31,15 +43,14 @@ void	treat_max(t_list **li_b, t_list **li_a, t_list *li_max, t_state *state)
 	transfer_top(li_b, li_a, 2, state);
 }
 
-
 void	process_100(t_state *state)
 {
-	int reminder;
-	int sens;
-	t_register *ledger;
-	t_list *ch_min;
-	t_list *ch_max;
-	t_list *temp;
+	int		reminder;
+	int		sens;
+	t_reg	*ledger;
+	t_list	*ch_min;
+	t_list	*ch_max;
+	t_list	*temp;
 
 	ledger = NULL;
 	brut_sort(&state->li_a, &state->li_b, &ledger, state);
@@ -76,33 +87,7 @@ void	process_100(t_state *state)
 			ft_lstshift(&temp);
 		}
 		while (reminder--)
-			shift_up(&state->li_a, 1, state); 
+			shift_up(&state->li_a, 1, state);
 		ledger = ledger->next;
 	}
 }
-
-
-	/*
-		ft_putstr_fd("_________________________________________________\n", 1);
-		ft_putstr_fd("ledger->n = ", 1);
-		ft_putnbr_fd(ledger->n, 1);
-		ft_putstr_fd("\n", 1);
-		display_list(temp);
-		ft_lstclear(&temp, ft_del);
-		*/
-		
-
-	/*
-			//if (dist_to_lst(*li_b, ch_min) < dist_to_lst(*li_b, ch_max))
-			if(0)
-			{
-				reminder++;
-				treat_min(li_b, li_a, ch_min);
-				ft_lstpop(&temp);
-			}	
-			else
-			{
-				treat_max(li_b, li_a, ch_max);
-				ft_lstshift(&temp);
-			}
-			*/

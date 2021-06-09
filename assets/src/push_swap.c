@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:42:01 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/06 17:28:13 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/09 14:27:16 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	}
 	parser(&state.li_a, argc, argv, &error);
 	if (error)
-		return (quit(&state.li_a, &state.li_b, error));
+		return (quit(&state.li_a, &state.li_b, error, &state));
 
 	//display_list(state.li_a);
 	//display_list(state.li_b);
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	//display_list(state.li_b);
 	
 	//printf("OPERATION_COUNT => [%d]\n", g_accumulator);
-	return (quit(&state.li_a, &state.li_b, error));
+	return (quit(&state.li_a, &state.li_b, error, &state));
 }
 
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 
 
 /*
-t_register *ledger;
+t_reg *ledger;
 	ledger = NULL;
 brut_sort(&li_a, &li_b, &ledger);
 	display_register(ledger);

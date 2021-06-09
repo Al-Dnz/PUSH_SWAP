@@ -48,7 +48,7 @@ void	sort_rest_chunk(t_list **li_1, t_list **li_2)
 		transfer_top(li_2, li_1, 2);
 }
 
-void	reduce_by_med(t_list **li_1, t_list **li_2, int sens, int size, t_register **temp);
+void	reduce_by_med(t_list **li_1, t_list **li_2, int sens, int size, t_reg **temp);
 
 void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens)
 {
@@ -114,13 +114,13 @@ void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens)
 	
 }
 
-void	reduce_by_med(t_list **li_1, t_list **li_2, int sens, int size, t_register **temp)
+void	reduce_by_med(t_list **li_1, t_list **li_2, int sens, int size, t_reg **temp)
 {
 	printf("{%d}\n",size);
 	int	new_size;
 	int median;
 	int reminder;
-	t_register *new;
+	t_reg *new;
 	int size_2;
 
 	reminder = 0;
@@ -244,7 +244,7 @@ void process_chunk_head(t_list **li_1, t_list **li_2, int size, int sens)
 void	process_100(t_list **li_a, t_list **li_b)
 {
 	printf("PROCESS_100\n");
-	t_register *ledger;
+	t_reg *ledger;
 
 	ledger = NULL;
 	
@@ -692,3 +692,137 @@ t_list	*chunk_max(t_list *li, int size)
 	}
 	return (res);
 }
+
+int		lst_cmp(t_list *li_a, t_list *li_b);
+
+int	lst_cmp(t_list *li_a, t_list *li_b)
+{
+	if (ft_lstsize(li_a) != ft_lstsize(li_b))
+		return (0);
+	while (li_a && li_b)
+	{
+		if ((int)li_a->content != (int)li_b->content)
+			return (0);
+		li_b = li_b->next;
+		li_a = li_a->next;
+	}
+	return (1);
+}
+
+
+void	visual_list(t_list *li)
+{
+	int	n;
+
+	while (li != NULL)
+	{
+		n = (int)li->content;
+		while (n--)
+			ft_putchar_fd('_', 1);
+		ft_putchar_fd('\n', 1);
+		li = li->next;
+	}
+	ft_putstr_fd("NULL\n", 1);
+}
+
+/*
+	while (*li_a != list_inf)
+		{
+				
+				if (optimized_shift(*li_a, list_inf))
+				{
+					printf("ra\n");
+					count++;
+					shift_up(li_a);
+				}	
+				else
+				{
+					printf("rra\n");
+					count++;
+					shift_down(li_a);
+				}
+				}	
+	*/
+
+
+/*
+void	process(t_list **li_a, t_list **li_b)
+{
+	t_list	*list_inf;
+	t_list	*list_median;
+	int size;
+	int count;
+
+	list_median = find_median(*li_a);
+	count = 0;
+	while (!lst_is_sort(*li_a))// && ft_lstsize(*li_a) > 2)//lst_is_sort(*li_a) < 1)// || *li_a != NULL)
+	{
+		list_inf = list_min(*li_a);
+		
+		while (*li_a != list_inf)
+		{
+				
+				if (optimized_shift(*li_a, list_inf))
+				{
+					printf("ra\n");
+					count++;
+					shift_up(li_a);
+				}	
+				else
+				{
+					printf("rra\n");
+					count++;
+					shift_down(li_a);
+				}
+				
+				
+		}
+		
+		printf("pa\n");
+		count++;
+		transfer_top(li_a, li_b);
+	
+	}
+	if (lst_is_sort(*li_a) < 1)
+	{
+		count++;
+		printf("sa\n");
+		swap_list(*li_a);
+	}
+	
+	
+	while (*li_b != NULL)
+	{
+		printf("pb\n");
+		count++;
+		transfer_top(li_b, li_a);
+	}
+	printf("OPERATION_COUNT => [%d]\n", count);
+}
+*/
+
+//bigprocess
+/*
+		ft_putstr_fd("_________________________________________________\n", 1);
+		ft_putstr_fd("ledger->n = ", 1);
+		ft_putnbr_fd(ledger->n, 1);
+		ft_putstr_fd("\n", 1);
+		display_list(temp);
+		ft_lstclear(&temp, ft_del);
+		*/
+		
+
+	/*
+			//if (dist_to_lst(*li_b, ch_min) < dist_to_lst(*li_b, ch_max))
+			if(0)
+			{
+				reminder++;
+				treat_min(li_b, li_a, ch_min);
+				ft_lstpop(&temp);
+			}	
+			else
+			{
+				treat_max(li_b, li_a, ch_max);
+				ft_lstshift(&temp);
+			}
+			*/

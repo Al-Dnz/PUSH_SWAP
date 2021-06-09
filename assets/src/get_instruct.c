@@ -12,16 +12,16 @@
 
 #include "header.h"
 
-int		lst_checker(t_list **li_a, t_list **li_b)
+int	lst_checker(t_list **li_a, t_list **li_b)
 {
 	if (ft_lstsize(*li_b) == 0 && lst_is_sort(*li_a) > 0)
 		return (1);
 	return (0);
 }
 
-int		auth_str(char *str)
+int	auth_str(char *str)
 {
-	static char *arr[11] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb",
+	static char	*arr[11] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb",
 "rr", "rra", "rrb", "rrr"};
 
 	if (ft_str_index(str, arr) == -1)

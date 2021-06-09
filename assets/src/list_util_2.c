@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_util.c                                        :+:      :+:    :+:   */
+/*   list_util_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/01 16:14:13 by adenhez          #+#    #+#             */
-/*   Updated: 2021/05/14 16:44:38 by adenhez          ###   ########.fr       */
+/*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
+/*   Updated: 2021/06/09 14:40:45 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	quit(t_list **li_a, t_list **li_b, int error, t_state *state)
+void	display_list(t_list *li)
 {
-	if (error)
-		ft_putstr_fd("Error\n", 2);
-	ft_lstclear(li_a, &ft_del);
-	ft_lstclear(li_b, &ft_del);
-	register_clear(&state->seq);
-	exit(error);
-	return (error);
+	while (li != NULL)
+	{
+		ft_putstr_fd("[", 1);
+		ft_putnbr_fd((int)li->content, 1);
+		ft_putstr_fd("]->", 1);
+		li = li->next;
+	}
+	ft_putstr_fd("NULL\n", 1);
+}
+
+void	visual_list(t_list *li)
+{
+	int	n;
+
+	while (li != NULL)
+	{
+		n = (int)li->content;
+		while (n--)
+			ft_putchar_fd('_', 1);
+		ft_putchar_fd('\n', 1);
+		li = li->next;
+	}
+	ft_putstr_fd("NULL\n", 1);
 }

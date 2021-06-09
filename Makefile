@@ -4,7 +4,9 @@ MAIN_FILE1	= 	assets/src/checker.c
 MAIN_FILE2	= 	assets/src/push_swap.c
 
 SRCS 		=	list_util.c \
+				list_util_2.c \
 				sort_operation.c \
+				sort_operation_2.c \
 				parser_util.c \
 				get_instruct.c \
 				exit_util.c \
@@ -14,6 +16,7 @@ SRCS 		=	list_util.c \
 				big_process_util.c \
 				short_process.c \
 				register_util.c \
+				register_util_2.c \
 				list_sorter.c \
 				switch_checker.c \
 

@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 17:11:56 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/06 14:41:04 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/09 16:37:47 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_list	*find_median(t_list *li)
 {
-	t_list *temp;
+	t_list	*temp;
 	t_list	*res;
 	int		size;
 	int		i;
-	
+
 	size = ft_lstsize(li);
 	i = 0;
 	temp = NULL;
@@ -34,7 +34,7 @@ t_list	*find_median(t_list *li)
 
 int	optimized_shift(t_list *li, t_list *list_inf)
 {
-	int before;
+	int	before;
 	int	after;
 
 	before = 0;
@@ -59,7 +59,7 @@ int	optimized_shift(t_list *li, t_list *list_inf)
 
 int	dist_to_lst(t_list *li, t_list *list)
 {
-	int dist;
+	int	dist;
 
 	dist = 0;
 	while (li)

@@ -6,37 +6,11 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/05/29 20:02:40 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/09 14:40:27 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-void	display_list(t_list *li)
-{
-	while (li != NULL)
-	{
-		ft_putstr_fd("[", 1);
-		ft_putnbr_fd((int)li->content, 1);
-		ft_putstr_fd("]->", 1);
-		li = li->next;
-	}
-	ft_putstr_fd("NULL\n", 1);
-}
-
-void	visual_list(t_list *li)
-{
-	int	n;
-	while (li != NULL)
-	{
-		n  = (int)li->content;
-		while (n--)
-			ft_putchar_fd('_', 1);
-		ft_putchar_fd('\n', 1);
-		li = li->next;
-	}
-	ft_putstr_fd("NULL\n", 1);
-}
 
 int	lst_is_sort(t_list *li)
 {
@@ -48,18 +22,13 @@ int	lst_is_sort(t_list *li)
 		li = li->next;
 	if (li->next == NULL)
 		return (1);
-	sens = (int)li->next->content > (int)li->content ? 1 : 0;
+	sens = (int)li->next->content > (int)li->content;
 	while (li && li->next)
 	{
-		
 		if (sens && (int)li->next->content < (int)li->content)
 			return (0);
 		if (!sens && (int)li->next->content > (int)li->content)
 			return (0);
-		/*
-		if ((int)li->next->content < (int)li->content)
-			return (0);
-		*/
 		li = li->next;
 	}
 	if (sens == 0)
@@ -84,8 +53,8 @@ int	lst_cmp(t_list *li_a, t_list *li_b)
 
 t_list	*list_min(t_list *li)
 {
-	t_list *res;
-	t_list *tmp;
+	t_list	*res;
+	t_list	*tmp;
 
 	res = li;
 	while (li)
@@ -99,17 +68,13 @@ t_list	*list_min(t_list *li)
 		}
 		li = li->next;
 	}
-	/*
-	if (res != NULL)
-		res->next = NULL;
-	*/
 	return (res);
 }
 
 t_list	*list_max(t_list *li)
 {
-	t_list *res;
-	t_list *tmp;
+	t_list	*res;
+	t_list	*tmp;
 
 	res = li;
 	while (li)
@@ -128,10 +93,10 @@ t_list	*list_max(t_list *li)
 
 void	lst_cpy(t_list **dest, t_list *li, int size)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	temp = NULL;
-	while (size--) 
+	while (size--)
 	{
 		temp = ft_lstnew(li->content);
 		ft_lstadd_back(dest, temp);

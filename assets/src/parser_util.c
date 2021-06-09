@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-int		arg_error(int argc, char **argv)
+int	arg_error(int argc, char **argv)
 {
 	int	i;
 
@@ -37,21 +37,21 @@ void	list_generator(t_list **li, char **tab, int *error)
 	i = 0;
 	while (tab[i])
 	{
-		if (ft_atolong(tab[i]) > INT_MAX || ft_atolong(tab[i]) < INT_MIN ||
-ft_strlen(tab[i]) > 11 || !ft_atoi_checker(tab[i]))
+		if (ft_atolong(tab[i]) > INT_MAX || ft_atolong(tab[i]) < INT_MIN
+			|| ft_strlen(tab[i]) > 11 || !ft_atoi_checker(tab[i]))
 			*error = 1;
 		if (*li == NULL)
-			*li = ft_lstnew((void*)ft_atoi(tab[i]));
+			*li = ft_lstnew((void *)ft_atoi(tab[i]));
 		else
 		{
-			temp = ft_lstnew((void*)ft_atoi(tab[i]));
+			temp = ft_lstnew((void *)ft_atoi(tab[i]));
 			ft_lstadd_back(li, temp);
 		}
 		i++;
 	}
 }
 
-int		duplicate_error(t_list *li)
+int	duplicate_error(t_list *li)
 {
 	t_list	*tmp;
 

@@ -1,17 +1,8 @@
 #include "header.h"
 
-t_register	*register_last(t_register *lst)
+void	register_add_back(t_reg **alst, t_reg *new)
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
-
-void	register_add_back(t_register **alst, t_register *new)
-{
-	t_register	*li;
+	t_reg	*li;
 
 	if (!*alst)
 	{
@@ -22,9 +13,9 @@ void	register_add_back(t_register **alst, t_register *new)
 	li->next = new;
 }
 
-void	register_add_front(t_register **alst, t_register *new)
+void	register_add_front(t_reg **alst, t_reg *new)
 {
-	t_register	*li;
+	t_reg	*li;
 
 	li = new;
 	if (li == NULL)
@@ -34,23 +25,26 @@ void	register_add_front(t_register **alst, t_register *new)
 	*alst = li;
 }
 
- void	register_clear(t_register **lst)
+void	register_clear(t_reg **lst)
 {
-	t_register	*li;
+	t_reg	*li;
 
 	if (*lst == NULL)
 		return ;
-	li = (*lst)->next != NULL ? (*lst)->next : NULL;
+	if ((*lst)->next != NULL)
+		li = (*lst)->next;
+	else
+		li = NULL;
 	(*lst)->n = 0;
 	free(*lst);
 	*lst = li;
 	register_clear(&(*lst));
 }
 
-void	register_pop(t_register **head_ref)
+void	register_pop(t_reg **head_ref)
 {
-	t_register	*head;
-	int			result;
+	t_reg	*head;
+	int		result;
 
 	head = NULL;
 	if (*head_ref == NULL)
@@ -61,40 +55,14 @@ void	register_pop(t_register **head_ref)
 	free(head);
 }
 
-t_register	*register_new(int n)
+t_reg	*register_new(int n)
 {
-	t_register	*li;
+	t_reg	*li;
 
-	li = malloc(sizeof(t_register));
+	li = malloc(sizeof(t_reg));
 	if (li == NULL)
 		return (NULL);
 	li->n = n;
 	li->next = NULL;
 	return (li);
 }
-
-void	display_register(t_register *li)
-{
-	while (li != NULL)
-	{
-		ft_putstr_fd("[", 1);
-		ft_putnbr_fd((int)li->n, 1);
-		ft_putstr_fd("]->", 1);
-		li = li->next;
-	}
-	ft_putstr_fd("NULL\n", 1);
-}
-
-void	read_seq(t_register *reg)
-{
-	static char *arr[12] = {"", "sa", "sb", "ss", "pa", "pb", "ra", "rb",
-"rr", "rra", "rrb", "rrr"};
-
-	while (reg != NULL)
-	{
-		ft_putstr_fd(arr[reg->n], 1);
-		ft_putstr_fd("\n", 1);
-		reg = reg->next;
-	}
-}
-
