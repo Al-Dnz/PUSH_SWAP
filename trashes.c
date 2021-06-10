@@ -241,7 +241,7 @@ void process_chunk_head(t_list **li_1, t_list **li_2, int size, int sens)
 
 
 
-void	process_100(t_list **li_a, t_list **li_b)
+void	process_100_bis(t_list **li_a, t_list **li_b)
 {
 	printf("PROCESS_100\n");
 	t_reg *ledger;
