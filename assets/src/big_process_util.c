@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:43:59 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/09 16:44:00 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/10 12:31:00 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	brut_sort(t_list **li_a, t_list **li_b, t_reg **ledger, t_state *state)
 		{
 			if ((int)(*li_a)->content < (int)pivot->content)
 			{
-				transfer_top(li_a, li_b, 1, state);
+				transfer_top(li_a, li_b, 1, state);	
 				adjust_list_b(li_b, med_of_med, first, state);
 				//if (first == 1)
 					//adjust_list_b(li_b, first);
