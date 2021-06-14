@@ -9,17 +9,21 @@ t_reg	*register_last(t_reg *lst)
 	return (lst);
 }
 
-void	read_seq(t_reg *reg)
+int	read_seq(t_reg *reg)
 {
+	int	n;
 	static char	*arr[12] = {"", "sa", "sb", "ss", "pa", "pb", "ra", "rb",
 "rr", "rra", "rrb", "rrr"};
 
+	n = 0;
 	while (reg != NULL)
 	{
 		ft_putstr_fd(arr[reg->n], 1);
 		ft_putstr_fd("\n", 1);
+		n++;
 		reg = reg->next;
 	}
+	return (n);
 }
 
 void	display_register(t_reg *li)

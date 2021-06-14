@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:38:37 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 15:10:01 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 17:10:38 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ int is_3_last_order(t_list *li_b, t_list *last, t_list *prelast, t_list *preprel
 	}
 	if (n != 3)
 		return (0);
-	if (sens == 1 && arr[2] == 3)
+	if (sens == 0 && arr[2] == 3)// && arr[1] == 2 && arr[0] == 1)
 		return (1);
-	if (sens == 0 && arr[2] == 1)
+	if (sens == 1 && arr[2] == 1)//  && arr[1] == 2 && arr[0] == 3)
 		return (1);
 	return (0);
 }
@@ -175,18 +175,18 @@ void	last_part(t_state *state, t_reg *ledger)
 		
 		while (temp)
 		{
-			//ft_putstr_fd("**********************************************************************\n", 1);
-			//display_list(state->li_b);
-			//ft_putstr_fd("----------------------------------------------------------------------\n", 1);
-			//display_list(temp);
-			//ft_putstr_fd("**********************************************************************\n\n\n", 1);
+			ft_putstr_fd("**********************************************************************\n", 1);
+			display_list(state->li_b);
+			ft_putstr_fd("----------------------------------------------------------------------\n", 1);
+			display_list(temp);
+			ft_putstr_fd("**********************************************************************\n\n\n", 1);
 			
 			ch_min = temp;
 			preprelast = pre_pre_last(temp);
 			prelast = pre_last(temp);
 			ch_max = ft_lstlast(temp);
 			sens = optimized_shift(state->li_b, ch_max);
-			remind_swap = 0;//is_3_last_order(state->li_b, ch_max, prelast, preprelast, sens);
+			remind_swap = 0;
 			preprelast_and_prelast = 0;//is_3_last_order(state->li_b, ch_max, prelast, preprelast, sens);
 			/*
 			if ((int)preprelast->content != (int)ch_min->content && ft_lstsize(temp) > 3 && (int)preprelast->content != (int)prelast->content)
@@ -199,7 +199,7 @@ void	last_part(t_state *state, t_reg *ledger)
 			else
 				last_and_prelast = 0;
 			*/	
-			while ((int)(state->li_b)->content != (int)ch_max->content)
+			while ((int)(state->li_b)->content != (int)ch_max->content && ft_lstsize(temp) > 1)
 			{
 				if ((int)(state->li_b)->content == (int)ch_min->content)
 				{
@@ -214,7 +214,7 @@ void	last_part(t_state *state, t_reg *ledger)
 						remind_swap = 1;
 					transfer_top(&state->li_b, &state->li_a, 2, state);
 				}
-				else if ((int)(state->li_b)->content == (int)preprelast->content && preprelast_and_prelast == 1)
+				else if ((int)(state->li_b)->content == (int)preprelast->content && preprelast_and_prelast)
 				{
 					remind_swap = 2;
 					transfer_top(&state->li_b, &state->li_a, 2, state);
@@ -225,17 +225,13 @@ void	last_part(t_state *state, t_reg *ledger)
 					shift_up(&state->li_b, 2, state);
 			}
 			transfer_top(&state->li_b, &state->li_a, 2, state);
-			if (remind_swap == 1)
-			{
-				swap_list(state->li_a, 1, state);
-				ft_lstshift(&temp);
-			}
-			else if (remind_swap == 2)
+			if (remind_swap > 0)
 			{
 				sort_3_head(&state->li_a, 1, state);
 				ft_lstshift(&temp);
-				ft_lstshift(&temp);
 			}
+			if (remind_swap == 2)
+				ft_lstshift(&temp);
 			ft_lstshift(&temp);
 		}
 		while (reminder--)

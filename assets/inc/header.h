@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 12:03:01 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:41:46 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_reg	*register_new(int n);
 
 t_reg	*register_last(t_reg *lst);
 void	display_register(t_reg *li);
-void	read_seq(t_reg *reg);
+int		read_seq(t_reg *reg);
 
 void	list_merge_sort(t_list **head_ref);
 
