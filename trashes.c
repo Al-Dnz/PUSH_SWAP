@@ -725,6 +725,61 @@ void	visual_list(t_list *li)
 	ft_putstr_fd("NULL\n", 1);
 }
 
+void	treat_min(t_list **li_b, t_list **li_a, t_list *li_min, t_state *state)
+{
+	int	sens;
+
+	sens = optimized_shift(*li_b, li_min);
+	while ((int)(*li_b)->content != (int)li_min->content)
+	{
+		if (sens == 0)
+			shift_down(li_b, 2, state);
+		else
+			shift_up(li_b, 2, state);
+	}
+	transfer_top(li_b, li_a, 2, state);
+	shift_down(li_a, 1, state);
+}
+
+void	treat_max(t_list **li_b, t_list **li_a, t_list *li_max, t_state *state)
+{
+	int	sens;
+
+	sens = optimized_shift(*li_b, li_max);
+	while ((int)(*li_b)->content != (int)li_max->content)
+	{
+		if (sens == 0)
+			shift_down(li_b, 2, state);
+		else
+			shift_up(li_b, 2, state);
+	}
+	transfer_top(li_b, li_a, 2, state);
+}
+
+int is_3_last_order_init(t_list *li_b, t_list *chmax, t_list *prelast, t_list *preprelast)
+{
+	//int n;
+	int arr[2];
+
+	//n = 0;
+	arr[0] = 0;
+	arr[1] = 0;
+	if (li_b ==  NULL || chmax == NULL || prelast == NULL || preprelast == NULL)
+		return (0);
+	while ((int)li_b->content != (int)chmax->content)
+	{
+		if((int)li_b->content == (int)preprelast->content)
+			arr[0] = 1;
+		if((int)li_b->content == (int)prelast->content)
+			arr[1] = 1 ;
+		li_b = li_b->next;
+	}
+	if (arr[0] == 1 && arr[1] == 1)
+		return (1);
+	return (0);
+}
+
+
 /*
 	while (*li_a != list_inf)
 		{

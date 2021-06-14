@@ -6,42 +6,11 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:38:37 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 22:11:39 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 22:37:47 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-void	treat_min(t_list **li_b, t_list **li_a, t_list *li_min, t_state *state)
-{
-	int	sens;
-
-	sens = optimized_shift(*li_b, li_min);
-	while ((int)(*li_b)->content != (int)li_min->content)
-	{
-		if (sens == 0)
-			shift_down(li_b, 2, state);
-		else
-			shift_up(li_b, 2, state);
-	}
-	transfer_top(li_b, li_a, 2, state);
-	shift_down(li_a, 1, state);
-}
-
-void	treat_max(t_list **li_b, t_list **li_a, t_list *li_max, t_state *state)
-{
-	int	sens;
-
-	sens = optimized_shift(*li_b, li_max);
-	while ((int)(*li_b)->content != (int)li_max->content)
-	{
-		if (sens == 0)
-			shift_down(li_b, 2, state);
-		else
-			shift_up(li_b, 2, state);
-	}
-	transfer_top(li_b, li_a, 2, state);
-}
 
 t_list	*pre_last(t_list *li)
 {
@@ -90,30 +59,6 @@ void	sort_3_head(t_list **li, int verbose, t_state *state)
 		if (b > c)
 			swap_list(*li, verbose, state);
 	}
-}
-
-
-int is_3_last_order_init(t_list *li_b, t_list *chmax, t_list *prelast, t_list *preprelast)
-{
-	//int n;
-	int arr[2];
-
-	//n = 0;
-	arr[0] = 0;
-	arr[1] = 0;
-	if (li_b ==  NULL || chmax == NULL || prelast == NULL || preprelast == NULL)
-		return (0);
-	while ((int)li_b->content != (int)chmax->content)
-	{
-		if((int)li_b->content == (int)preprelast->content)
-			arr[0] = 1;
-		if((int)li_b->content == (int)prelast->content)
-			arr[1] = 1 ;
-		li_b = li_b->next;
-	}
-	if (arr[0] == 1 && arr[1] == 1)
-		return (1);
-	return (0);
 }
 
 int is_3_last_order(t_list *li_b, t_list *last, t_list *prelast, t_list *preprelast, int sens)
@@ -177,7 +122,6 @@ void	last_part(t_state *state, t_reg *ledger)
 			display_list(temp);
 			ft_putstr_fd("**********************************************************************\n\n\n", 1);
 			*/
-		
 			ch_min = temp;
 			preprelast = pre_pre_last(temp);
 			prelast = pre_last(temp);
@@ -185,7 +129,6 @@ void	last_part(t_state *state, t_reg *ledger)
 			sens = optimized_shift(state->li_b, ch_max);
 			remind_swap = 0;
 			preprelast_and_prelast = is_3_last_order(state->li_b, ch_max, prelast, preprelast, sens);
-	
 			while ((int)(state->li_b)->content != (int)ch_max->content && temp)
 			{
 				if ((int)(state->li_b)->content == (int)ch_min->content)
@@ -254,12 +197,12 @@ void	first_parts(t_state *state, t_reg *ledger)
 			if (dist_to_lst(state->li_b, ch_min) < dist_to_lst(state->li_b, ch_max))
 			{
 				reminder++;
-				treat_min(&state->li_b, &state->li_a, ch_min, state);
+				//treat_min(&state->li_b, &state->li_a, ch_min, state);
 				ft_lstpop(&temp);
 			}	
 			else
 			{
-				treat_max(&state->li_b, &state->li_a, ch_max, state);
+				//treat_max(&state->li_b, &state->li_a, ch_max, state);
 				ft_lstshift(&temp);
 			}
 		}
