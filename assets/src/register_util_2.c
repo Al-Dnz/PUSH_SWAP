@@ -11,7 +11,7 @@ t_reg	*register_last(t_reg *lst)
 
 int	read_seq(t_reg *reg)
 {
-	int	n;
+	int			n;
 	static char	*arr[12] = {"", "sa", "sb", "ss", "pa", "pb", "ra", "rb",
 "rr", "rra", "rrb", "rrr"};
 

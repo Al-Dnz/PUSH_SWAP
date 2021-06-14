@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:20:21 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/07 10:43:30 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 23:04:30 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	parser(&li_a, argc, argv, &error);
-	//display_list(li_a);
-	//display_list(li_b);
 	if (error)
 		return (quit(&li_a, &li_b, error, &state));
 	get_instruct(&li_a, &li_b, &error);

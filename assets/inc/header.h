@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 15:41:46 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 23:02:58 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ typedef struct s_reg
 	int				n;
 	struct s_reg	*next;
 }								t_reg;
+
+typedef struct s_tb_1
+{
+	int		first;
+	int		size;
+	int		size2;
+	int		med_of_med;
+	int		n;
+}								t_tb_1;
 
 typedef struct s_state
 {
