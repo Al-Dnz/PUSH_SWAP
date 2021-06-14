@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:42:01 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 15:42:39 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 22:08:47 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ int	main(int argc, char **argv)
 	//ft_putstr_fd("********************************\n", 1);
 	
 	switch_process(&state);
-	printf("=>%d<=\n", read_seq(state.seq));
 	
-	display_list(state.li_a);
-	ft_putstr_fd("********************************\n", 1);
-	display_list(state.li_b);
+	read_seq(state.seq);
+	//printf("=>%d<=\n", read_seq(state.seq));
+	
+	//display_list(state.li_a);
+	//ft_putstr_fd("********************************\n", 1);
+	//display_list(state.li_b);
 
 	
 	return (quit(&state.li_a, &state.li_b, error, &state));
