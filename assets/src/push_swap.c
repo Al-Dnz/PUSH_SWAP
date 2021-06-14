@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:42:01 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/10 18:19:01 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:07:46 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int	main(int argc, char **argv)
 	read_seq(state.seq);
 	
 	//display_list(state.li_a);
+	//ft_putstr_fd("********************************\n", 1);
 	//display_list(state.li_b);
+
 	
 	return (quit(&state.li_a, &state.li_b, error, &state));
 }

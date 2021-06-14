@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:38:37 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/11 16:38:04 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:10:01 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	sort_3_head(t_list **li, int verbose, t_state *state)
 }
 
 
-int is_3_last_order(t_list *li_b, t_list *chmax, t_list *prelast, t_list *preprelast)
+int is_3_last_order_init(t_list *li_b, t_list *chmax, t_list *prelast, t_list *preprelast)
 {
 	//int n;
 	int arr[2];
@@ -116,11 +116,44 @@ int is_3_last_order(t_list *li_b, t_list *chmax, t_list *prelast, t_list *prepre
 	return (0);
 }
 
+int is_3_last_order(t_list *li_b, t_list *last, t_list *prelast, t_list *preprelast, int sens)
+{
+	int n;
+	int arr[3];
+
+	n = 0;
+
+	arr[0] = 0;
+	arr[1] = 0;
+	arr[2] = 0;
+	
+	if (li_b ==  NULL || last == NULL || prelast == NULL || preprelast == NULL)
+		return (0);
+	while (li_b)
+	{
+		if((int)li_b->content == (int)preprelast->content)
+			arr[0] = ++n;
+		if((int)li_b->content == (int)prelast->content)
+			arr[1] = ++n ;
+		if((int)li_b->content == (int)last->content)
+			arr[2] = ++n ;
+		li_b = li_b->next;
+	}
+	if (n != 3)
+		return (0);
+	if (sens == 1 && arr[2] == 3)
+		return (1);
+	if (sens == 0 && arr[2] == 1)
+		return (1);
+	return (0);
+}
+
 void	last_part(t_state *state, t_reg *ledger)
 {
 	int		reminder;
 	int		remind_swap;
-	int		remind_swap_bis;
+	int		preprelast_and_prelast;
+	//int		last_and_prelast;
 	int		sens;
 	t_list	*ch_min;
 	t_list	*ch_max;
@@ -139,16 +172,33 @@ void	last_part(t_state *state, t_reg *ledger)
 		list_merge_sort(&temp);
 		reminder = 0;
 		sens = 0;
+		
 		while (temp)
 		{
-			remind_swap = 0;
+			//ft_putstr_fd("**********************************************************************\n", 1);
+			//display_list(state->li_b);
+			//ft_putstr_fd("----------------------------------------------------------------------\n", 1);
+			//display_list(temp);
+			//ft_putstr_fd("**********************************************************************\n\n\n", 1);
 			
 			ch_min = temp;
-			prelast = pre_last(temp);
 			preprelast = pre_pre_last(temp);
+			prelast = pre_last(temp);
 			ch_max = ft_lstlast(temp);
 			sens = optimized_shift(state->li_b, ch_max);
-			remind_swap_bis = is_3_last_order(state->li_b, ch_max, prelast, preprelast);
+			remind_swap = 0;//is_3_last_order(state->li_b, ch_max, prelast, preprelast, sens);
+			preprelast_and_prelast = 0;//is_3_last_order(state->li_b, ch_max, prelast, preprelast, sens);
+			/*
+			if ((int)preprelast->content != (int)ch_min->content && ft_lstsize(temp) > 3 && (int)preprelast->content != (int)prelast->content)
+				
+			else
+				preprelast_and_prelast = 0;
+				
+			if ((int)prelast->content != (int)ch_min->content && (int)prelast->content != (int)ch_max->content)
+				last_and_prelast = 1;
+			else
+				last_and_prelast = 0;
+			*/	
 			while ((int)(state->li_b)->content != (int)ch_max->content)
 			{
 				if ((int)(state->li_b)->content == (int)ch_min->content)
@@ -158,25 +208,29 @@ void	last_part(t_state *state, t_reg *ledger)
 					shift_down(&state->li_a, 1, state);
 					temp = temp->next;
 				}
-				else if ((int)(state->li_b)->content == (int)preprelast->content && remind_swap_bis)
-					transfer_top(&state->li_b, &state->li_a, 2, state);
 				else if ((int)(state->li_b)->content == (int)prelast->content)
 				{
-					remind_swap = 1;
+					if (remind_swap == 0)
+						remind_swap = 1;
 					transfer_top(&state->li_b, &state->li_a, 2, state);
 				}
-				else if (sens == 0)
+				else if ((int)(state->li_b)->content == (int)preprelast->content && preprelast_and_prelast == 1)
+				{
+					remind_swap = 2;
+					transfer_top(&state->li_b, &state->li_a, 2, state);
+				}
+				if (sens == 0)
 					shift_down(&state->li_b, 2, state);
 				else if (sens == 1)
 					shift_up(&state->li_b, 2, state);
 			}
 			transfer_top(&state->li_b, &state->li_a, 2, state);
-			if (remind_swap == 1 && remind_swap_bis != 1)
+			if (remind_swap == 1)
 			{
 				swap_list(state->li_a, 1, state);
 				ft_lstshift(&temp);
 			}
-			else if (remind_swap_bis)
+			else if (remind_swap == 2)
 			{
 				sort_3_head(&state->li_a, 1, state);
 				ft_lstshift(&temp);
@@ -186,7 +240,7 @@ void	last_part(t_state *state, t_reg *ledger)
 		}
 		while (reminder--)
 			shift_up(&state->li_a, 1, state);
-		//ft_lstclear(&temp, &ft_del);
+		ft_lstclear(&temp, &ft_del);
 		ledger = ledger->next;
 	}
 	

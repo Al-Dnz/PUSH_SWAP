@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:03:14 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/09 16:06:05 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/13 17:59:28 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ void	switch_process(t_state *state)
 		process_3(state);
 		return ;
 	}
+	
 	if (size < 60)
 	{
 		process_5(state);
 		return ;
 	}
+	
 	if (size <= 1000)
 	{
 		process_100(state);
