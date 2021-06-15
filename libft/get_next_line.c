@@ -64,6 +64,12 @@ int	output(int byte, char **str, char **line)
 	}
 }
 
+void clean_str(char **str)
+{
+	if (*str != NULL)
+		ft_strclr(str);
+}
+
 int	get_next_line(int fd, char **line)
 {
 	static char	*str;
@@ -72,6 +78,7 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0)
 		return (-1);
+	ft_strclr(&str);
 	g_byte = read(fd, buf, BUFFER_SIZE);
 	while (g_byte > 0)
 	{
