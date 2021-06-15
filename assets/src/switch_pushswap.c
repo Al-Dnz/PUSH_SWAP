@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:03:14 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 13:14:38 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 13:17:09 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,9 @@ void	sort_by_push(t_list **li_a, t_list **li_b, t_state *state)
 		while (*li_a != list_inf)
 		{
 			if (optimized_shift(*li_a, list_inf))
-			{
 				shift_up(li_a, 1, state);
-			}	
 			else
-			{
 				shift_down(li_a, 1, state);
-			}
 		}
 		transfer_top(li_a, li_b, 1, state);
 	}
