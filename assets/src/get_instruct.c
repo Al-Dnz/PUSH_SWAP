@@ -40,6 +40,7 @@ void	get_instruct(t_list **li_a, t_list **li_b, int *error)
 	while (ret != 0)
 	{
 		str = NULL;
+		ft_strclr(&str);
 		ret = get_next_line(0, &str);
 		if (!ft_strchart(str, " \n") && ft_strlen(str))
 		{

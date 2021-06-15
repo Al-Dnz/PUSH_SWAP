@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:57:12 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/09 13:28:28 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 17:06:48 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,6 @@ int	output(int byte, char **str, char **line)
 	}
 }
 
-void clean_str(char **str)
-{
-	if (*str != NULL)
-		ft_strclr(str);
-}
-
 int	get_next_line(int fd, char **line)
 {
 	static char	*str;
@@ -78,7 +72,6 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0)
 		return (-1);
-	ft_strclr(&str);
 	g_byte = read(fd, buf, BUFFER_SIZE);
 	while (g_byte > 0)
 	{
