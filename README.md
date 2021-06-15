@@ -1,4 +1,13 @@
 
+
+## LAUNCH
+
+```
+make
+```
+
+## GENERATE A RANDOM LIST OF INTEGERS
+
 To set a random number list, exectute the next command line 
 
 ```
@@ -15,20 +24,23 @@ Check your list with the next line:
 ```
 echo $ARG
 ```
-## TO_DO
 
-- [ ] manage int overflow
-- [ ] leaks in GNL
-- [ ] quick sort
+## PUSH_SWAP
 
-## RESSOURCES
+```
+./push_swap $ARG
+```
+and you will get all operation to sort the initial stack
 
-- https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+## CHECKER
+```
+./checker {your list of int}
+```
+and enter teh operation you want : sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr
 
+result is OK if your sequence sorts , KO if not.
 
-## STRATEGIES
-
-- 2 lists divided by median value of initial list
-- sort li_a in one sens , and li_b in the reverse sens
-- at the near end [pb] during x=ft_lstsize(li_b) times
-- then [ra] x times to reorder final list
+```
+./push_swap {your list of int} | ./checker {your list of int}
+```
+should return OK if push_swap program if efficient.
