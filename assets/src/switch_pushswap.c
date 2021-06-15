@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:03:14 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 23:04:12 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 13:11:52 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,17 @@ void	sort_by_push(t_list **li_a, t_list **li_b, t_state *state)
 		{
 			if (optimized_shift(*li_a, list_inf))
 			{
-				g_accumulator++;
 				shift_up(li_a, 1, state);
 			}	
 			else
 			{
-				g_accumulator++;
 				shift_down(li_a, 1, state);
 			}
 		}
-		g_accumulator++;
 		transfer_top(li_a, li_b, 1, state);
 	}
 }
-
-void	insertion_sort(t_list **li, t_state *state)
-{
-	while (lst_is_sort(*li) < 1)
-	{
-		if ((int)(*li)->content > (int)(*li)->next->content)
-		{
-			g_accumulator++;
-			printf("sa\n");
-			swap_list(*li, 1, state);
-		}
-		g_accumulator++;
-		printf("rra\n");
-		shift_down(li, 1, state);
-	}
-}	
-
+	
 void	switch_process(t_state *state)
 {
 	int	size;

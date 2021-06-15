@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 12:59:53 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 13:12:02 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 # include "../../libft/libft.h"
 # include <stdlib.h>
 # include <limits.h>
-
-///////////////////
-# include <stdio.h>
-int	g_accumulator;
-///////////////////
 
 typedef struct s_reg
 {
@@ -99,7 +94,6 @@ int		dist_to_lst(t_list *li, t_list *list);
 
 void	sort_by_push(t_list **li_a, t_list **li_b, t_state *state);
 void	bring_back(t_list **li_a, t_list **li_b, t_state *state);
-void	insertion_sort(t_list **li, t_state *state);
 void	switch_process(t_state *state);
 void	switch_push_swap(t_list **li_a, t_list **li_b);
 
@@ -110,9 +104,6 @@ void	process_100(t_state *state);
 
 void	brut_sort(t_list **li_a, t_list **li_b,
 			t_reg **ledger, t_state *state);
-
-void	reduce_by_med(t_list **li_1, t_list **li_2,
-			int sens, int size, t_reg **temp);
 
 void	process_chunk_head(t_list **li_1, t_list **li_2, int size, int sens);
 void	process_chunk(t_list **li_1, t_list **li_2, int size, int sens);

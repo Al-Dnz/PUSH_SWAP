@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 17:11:56 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 12:57:15 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 13:10:25 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	bring_back(t_list **li_a, t_list **li_b, t_state *state)
 {
 	while (*li_b != NULL)
 	{
-		g_accumulator++;
 		transfer_top(li_b, li_a, 2, state);
 	}
 }
