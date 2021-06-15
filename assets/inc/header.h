@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 23:02:58 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 12:59:53 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,25 @@ typedef struct s_tb_1
 	int		n;
 }								t_tb_1;
 
+typedef struct s_tb_2
+{
+	int		reminder;
+	int		remind_swap;
+	int		preprelast_and_prelast;
+	int		sens;
+	t_list	*ch_min;
+	t_list	*ch_max;
+	t_list	*temp;
+	t_list	*prelast;
+	t_list	*preprelast;
+
+}				t_tb_2;
+
 typedef struct s_state
 {
+	int		a;
+	int		b;
+	int		c;
 	t_list	*li_a;
 	t_list	*li_b;
 	t_reg	*seq;
@@ -112,5 +129,18 @@ int		read_seq(t_reg *reg);
 
 void	list_merge_sort(t_list **head_ref);
 
+void	tourniquet(t_state *state, t_tb_2 *toolbox);
+void	temp_loop(t_state *state, t_tb_2 *toolbox);
+void	finalize_loop(t_state *state, t_tb_2 *toolbox);
+void	li_a_reamenagement(t_state *state, t_tb_2 *toolbox);
+void	init_loop(t_state *state, t_tb_2 *toolbox);
+
+int		is_3_last_order(t_list *li_b, t_tb_2 tb);
 void	sort_3_head(t_list **li, int verbose, t_state *state);
+void	set_toolbox(t_tb_2 *toolbox);
+void	main_process(t_state *state, t_reg *ledger);
+
+t_list	*pre_last(t_list *li);
+t_list	*pre_pre_last(t_list *li);
+
 #endif

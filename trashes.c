@@ -1053,3 +1053,43 @@ void	first_parts(t_state *state, t_reg *ledger)
 	
 }
 */
+
+int	is_3_last_order_init(t_list *li_b, t_list *last, t_list *prelast, t_list *preprelast, int sens)
+{
+	int 		n;
+	static int	arr[3] = {0, 0, 0};
+
+	n = 0;
+	if (li_b ==  NULL || last == NULL || prelast == NULL || preprelast == NULL)
+		return (0);
+	while (li_b)
+	{
+		if((int)li_b->content == (int)preprelast->content)
+			arr[0] = ++n;
+		if((int)li_b->content == (int)prelast->content)
+			arr[1] = ++n ;
+		if((int)li_b->content == (int)last->content)
+			arr[2] = ++n ;
+		li_b = li_b->next;
+	}
+	if (n != 3)
+		return (0);
+	if (sens == 0 && arr[2] == 3 && arr[1] == 2 && arr[0] == 1)
+		return (1);
+	if (sens == 1 && arr[2] == 1 && arr[1] == 2 && arr[0] == 3)
+		return (1);
+	return (0);
+}
+
+
+		/*
+			if ((int)preprelast->content != (int)ch_min->content && ft_lstsize(temp) > 3 && (int)preprelast->content != (int)prelast->content)
+				
+			else
+				preprelast_and_prelast = 0;
+				
+			if ((int)prelast->content != (int)ch_min->content && (int)prelast->content != (int)ch_max->content)
+				last_and_prelast = 1;
+			else
+				last_and_prelast = 0;
+			*/	
