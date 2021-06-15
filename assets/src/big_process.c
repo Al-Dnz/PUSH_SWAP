@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:38:37 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 22:37:47 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 11:53:42 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int is_3_last_order(t_list *li_b, t_list *last, t_list *prelast, t_list *preprel
 	return (0);
 }
 
-void	last_part(t_state *state, t_reg *ledger)
+typedef struct s_tb_2
 {
 	int		reminder;
 	int		remind_swap;
@@ -101,117 +101,84 @@ void	last_part(t_state *state, t_reg *ledger)
 	t_list	*prelast;
 	t_list	*preprelast;
 
-	temp = NULL;
-	ch_min = NULL;
-	ch_max = NULL;
-	prelast = NULL;
-	preprelast = NULL;
+}				t_tb_2;
+
+void	set_toolbox(t_tb_2 *toolbox)
+{
+	toolbox->temp = NULL;
+	toolbox->ch_min = NULL;
+	toolbox->ch_max = NULL;
+	toolbox->prelast = NULL;
+	toolbox->preprelast = NULL;
+}
+
+void	last_part(t_state *state, t_reg *ledger)
+{
+	t_tb_2	toolbox;
+
+	set_toolbox(&toolbox);
 	while (ledger)
 	{
-		lst_cpy(&temp, state->li_b, ledger->n);
-		list_merge_sort(&temp);
-		reminder = 0;
-		sens = 0;
-		
-		while (temp)
+		lst_cpy(&toolbox.temp, state->li_b, ledger->n);
+		list_merge_sort(&toolbox.temp);
+		toolbox.reminder = 0;
+		toolbox.sens = 0;
+		while (toolbox.temp)
 		{
-			/*
-			ft_putstr_fd("**********************************************************************\n", 1);
-			display_list(state->li_b);
-			ft_putstr_fd("----------------------------------------------------------------------\n", 1);
-			display_list(temp);
-			ft_putstr_fd("**********************************************************************\n\n\n", 1);
-			*/
-			ch_min = temp;
-			preprelast = pre_pre_last(temp);
-			prelast = pre_last(temp);
-			ch_max = ft_lstlast(temp);
-			sens = optimized_shift(state->li_b, ch_max);
-			remind_swap = 0;
-			preprelast_and_prelast = is_3_last_order(state->li_b, ch_max, prelast, preprelast, sens);
-			while ((int)(state->li_b)->content != (int)ch_max->content && temp)
+			toolbox.ch_min = toolbox.temp;
+			toolbox.preprelast = pre_pre_last(toolbox.temp);
+			toolbox.prelast = pre_last(toolbox.temp);
+			toolbox.ch_max = ft_lstlast(toolbox.temp);
+			toolbox.sens = optimized_shift(state->li_b, toolbox.ch_max);
+			toolbox.remind_swap = 0;
+			toolbox.preprelast_and_prelast = is_3_last_order(state->li_b, toolbox.ch_max, toolbox.prelast, toolbox.preprelast, toolbox.sens);
+			while ((int)(state->li_b)->content != (int)toolbox.ch_max->content && toolbox.temp)
 			{
-				if ((int)(state->li_b)->content == (int)ch_min->content)
+				if ((int)(state->li_b)->content == (int)toolbox.ch_min->content)
 				{
-					reminder++;
+					toolbox.reminder++;
 					transfer_top(&state->li_b, &state->li_a, 2, state);
 					shift_down(&state->li_a, 1, state);
-					temp = temp->next;
+					toolbox.temp = toolbox.temp->next;
 				}
-				else if ((int)(state->li_b)->content == (int)prelast->content)
+				else if ((int)(state->li_b)->content == (int)toolbox.prelast->content)
 				{
-					if (remind_swap == 0)
-						remind_swap = 1;
+					if (toolbox.remind_swap == 0)
+						toolbox.remind_swap = 1;
 					transfer_top(&state->li_b, &state->li_a, 2, state);
 				}
-				else if ((int)(state->li_b)->content == (int)preprelast->content && preprelast_and_prelast)
+				else if ((int)(state->li_b)->content == (int)toolbox.preprelast->content && toolbox.preprelast_and_prelast)
 				{
-					remind_swap = 2;
+					toolbox.remind_swap = 2;
 					transfer_top(&state->li_b, &state->li_a, 2, state);
 				}
 				else 
 				{
-					if (sens == 0)
+					if (toolbox.sens == 0)
 						shift_down(&state->li_b, 2, state);
-					else if (sens == 1)
+					else if (toolbox.sens == 1)
 						shift_up(&state->li_b, 2, state);
 				}
 			}
 			transfer_top(&state->li_b, &state->li_a, 2, state);
-			if (remind_swap > 0)
+			if (toolbox.remind_swap > 0)
 			{
 				sort_3_head(&state->li_a, 1, state);
-				ft_lstshift(&temp);
+				ft_lstshift(&toolbox.temp);
 			}
-			if (remind_swap == 2)
-				ft_lstshift(&temp);
-			ft_lstshift(&temp);
+			if (toolbox.remind_swap == 2)
+				ft_lstshift(&toolbox.temp);
+			ft_lstshift(&toolbox.temp);
 		}
-		while (reminder--)
+		while (toolbox.reminder--)
 			shift_up(&state->li_a, 1, state);
-		ft_lstclear(&temp, &ft_del);
+		ft_lstclear(&toolbox.temp, &ft_del);
 		ledger = ledger->next;
 	}
 	
 }
 
-void	first_parts(t_state *state, t_reg *ledger)
-{
-	int		reminder;
-	t_list	*ch_min;
-	t_list	*ch_max;
-	t_list	*temp;
 
-	temp = NULL;
-	ch_min = NULL;
-	ch_max = NULL;
-	while (ledger)
-	{
-		lst_cpy(&temp, state->li_b, ledger->n);
-		list_merge_sort(&temp);
-		reminder = 0;
-		while (temp)
-		{
-			ch_min = temp;
-			ch_max = ft_lstlast(temp);
-			if (dist_to_lst(state->li_b, ch_min) < dist_to_lst(state->li_b, ch_max))
-			{
-				reminder++;
-				//treat_min(&state->li_b, &state->li_a, ch_min, state);
-				ft_lstpop(&temp);
-			}	
-			else
-			{
-				//treat_max(&state->li_b, &state->li_a, ch_max, state);
-				ft_lstshift(&temp);
-			}
-		}
-		while (reminder--)
-			shift_up(&state->li_a, 1, state);
-		ledger = ledger->next;
-	}
-	
-}
 
 void	process_100(t_state *state)
 {

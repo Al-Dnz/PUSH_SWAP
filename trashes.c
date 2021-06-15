@@ -1005,3 +1005,51 @@ ft_putstr_fd("----------------------------------\n", 1);
 			}		
 */
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+			/*
+			ft_putstr_fd("**********************************************************************\n", 1);
+			display_list(state->li_b);
+			ft_putstr_fd("----------------------------------------------------------------------\n", 1);
+			display_list(temp);
+			ft_putstr_fd("**********************************************************************\n\n\n", 1);
+			*/
+
+/*
+void	first_parts(t_state *state, t_reg *ledger)
+{
+	int		reminder;
+	t_list	*ch_min;
+	t_list	*ch_max;
+	t_list	*temp;
+
+	temp = NULL;
+	ch_min = NULL;
+	ch_max = NULL;
+	while (ledger)
+	{
+		lst_cpy(&temp, state->li_b, ledger->n);
+		list_merge_sort(&temp);
+		reminder = 0;
+		while (temp)
+		{
+			ch_min = temp;
+			ch_max = ft_lstlast(temp);
+			if (dist_to_lst(state->li_b, ch_min) < dist_to_lst(state->li_b, ch_max))
+			{
+				reminder++;
+				//treat_min(&state->li_b, &state->li_a, ch_min, state);
+				ft_lstpop(&temp);
+			}	
+			else
+			{
+				//treat_max(&state->li_b, &state->li_a, ch_max, state);
+				ft_lstshift(&temp);
+			}
+		}
+		while (reminder--)
+			shift_up(&state->li_a, 1, state);
+		ledger = ledger->next;
+	}
+	
+}
+*/
