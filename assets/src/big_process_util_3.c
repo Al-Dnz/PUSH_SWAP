@@ -93,6 +93,7 @@ void	main_process(t_state *state, t_reg *ledger)
 			transfer_top(&state->li_b, &state->li_a, 2, state);
 			finalize_loop(state, &toolbox);
 		}
+		ft_lstclear(&toolbox.temp, ft_del);
 		li_a_reamenagement(state, &toolbox);
 		ledger = ledger->next;
 	}

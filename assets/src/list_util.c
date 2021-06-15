@@ -93,13 +93,18 @@ t_list	*list_max(t_list *li)
 
 void	lst_cpy(t_list **dest, t_list *li, int size)
 {
-	t_list	*temp;
-
-	temp = NULL;
-	while (size--)
+	while (li && size--)
 	{
-		temp = ft_lstnew(li->content);
-		ft_lstadd_back(dest, temp);
+		ft_lstadd_back(dest, ft_lstnew(li->content));
+		li = li->next;
+	}
+}
+
+void	lst_cpy_2(t_list **dest, t_list *li, int size)
+{
+	while (li && size--)
+	{
+		ft_lstadd_back(dest, ft_lstnew(li->content));
 		li = li->next;
 	}
 }

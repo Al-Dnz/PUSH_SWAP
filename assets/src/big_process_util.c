@@ -15,19 +15,24 @@
 int	find_med_of_med(t_list *li)
 {
 	t_list	*temp;
+	t_list	*res_li;
 	int		med;
 	int		res;
 
 	temp = NULL;
-	med = (int)find_median(li)->content;
+	res_li = find_median(li);
+	med = (int)res_li->content;
+	ft_lstclear(&res_li, &ft_del);
 	while (li)
 	{
 		if ((int)li->content < med)
 			ft_lstadd_back(&temp, ft_lstnew(li->content));
 		li = li->next;
 	}
-	res = (int)find_median(temp)->content;
+	res_li = find_median(temp);
+	res = (int)res_li->content;
 	ft_lstclear(&temp, &ft_del);
+	ft_lstclear(&res_li, &ft_del);
 	return (res);
 }
 
@@ -62,6 +67,8 @@ void	brut_sort(t_list **li_a, t_list **li_b, t_reg **ledger, t_state *state)
 		}
 		toolbox.first = 0;
 		register_add_front(ledger, register_new(toolbox.n));
+		ft_lstclear(&pivot, ft_del);
 		toolbox.size2 = ft_lstsize(*li_a);
 	}
+	
 }
