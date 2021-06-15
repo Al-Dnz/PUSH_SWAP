@@ -100,11 +100,3 @@ void	lst_cpy(t_list **dest, t_list *li, int size)
 	}
 }
 
-void	lst_cpy_2(t_list **dest, t_list *li, int size)
-{
-	while (li && size--)
-	{
-		ft_lstadd_back(dest, ft_lstnew(li->content));
-		li = li->next;
-	}
-}
