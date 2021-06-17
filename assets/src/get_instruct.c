@@ -21,9 +21,11 @@ int	lst_checker(t_list **li_a, t_list **li_b)
 
 int	auth_str(char *str)
 {
-	static char	*arr[11] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb",
+	static char	*arr[12] = {"", "sa", "sb", "ss", "pa", "pb", "ra", "rb",
 "rr", "rra", "rrb", "rrr"};
 
+	if (str == NULL)
+		return (0);
 	if (ft_str_index(str, arr) == -1)
 		return (0);
 	return (1);
@@ -32,28 +34,24 @@ int	auth_str(char *str)
 void	get_instruct(t_list **li_a, t_list **li_b, int *error)
 {
 	char	*str;
-	char	**tab;
 	int		ret;
 
-	tab = NULL;
 	ret = 1;
 	while (ret != 0)
 	{
 		str = NULL;
-		ft_strclr(&str);
 		ret = get_next_line(0, &str);
 		if (!ft_strchart(str, " \n") && ft_strlen(str))
 		{
-			tab = ft_split(str, " ");
-			if (ft_tabsize(tab) > 1 || !auth_str(str))
+			if (!auth_str(str))
 			{
 				*error = 1;
 				ret = 0;
 			}
 			else
 				switcher(str, li_a, li_b);
-			ft_free_tab(tab);
 		}
 		ft_strclr(&str);
 	}
+	ft_strclr(&str);
 }

@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/14 16:12:17 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 17:46:22 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,3 @@ void	lst_cpy(t_list **dest, t_list *li, int size)
 		li = li->next;
 	}
 }
-

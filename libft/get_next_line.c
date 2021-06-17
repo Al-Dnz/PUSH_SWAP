@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:57:12 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 17:06:48 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/17 14:39:55 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	g_byte;
 
 int	gnl_process(char **str, char **line)
 {
-	char	*temp;
 	char	*ptr;
 	int		len;
 
@@ -27,11 +26,8 @@ int	gnl_process(char **str, char **line)
 	if (ptr != NULL)
 	{
 		*line = ft_strsub(*str, 0, len);
-		temp = ft_strdup(++ptr);
-		if (temp == NULL)
-			return (-1);
 		free(*str);
-		*str = temp;
+		*str = ft_strdup(++ptr);
 	}
 	else
 	{

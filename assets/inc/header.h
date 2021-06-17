@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 13:12:02 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/15 17:48:33 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_reg
 
 typedef struct s_tb_1
 {
+	t_list	*pivot;
 	int		first;
 	int		size;
 	int		size2;
