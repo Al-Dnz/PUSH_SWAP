@@ -79,14 +79,12 @@ void	set_toolbox(t_tb_2 *toolbox)
 void	main_process(t_state *state, t_reg *ledger)
 {
 	t_tb_2	toolbox;
-	t_list *tmp;
 
 	set_toolbox(&toolbox);
 	while (ledger)
 	{
 		toolbox.temp = lst_cpy(state->li_b, ledger->n);
 		list_merge_sort(&toolbox.temp);
-		tmp = toolbox.temp;
 		toolbox.reminder = 0;
 		toolbox.sens = 0;
 		while (toolbox.temp)
@@ -96,7 +94,6 @@ void	main_process(t_state *state, t_reg *ledger)
 			transfer_top(&state->li_b, &state->li_a, 2, state);
 			finalize_loop(state, &toolbox);
 		}
-		//ft_lstclear(&tmp, ft_del);
 		li_a_reamenagement(state, &toolbox);
 		ledger = ledger->next;
 	}

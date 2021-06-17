@@ -22,7 +22,7 @@ void	tourniquet(t_state *state, t_tb_2 *toolbox)
 
 void	temp_loop(t_state *state, t_tb_2 *tb)
 {
-	tb->tmp = tb->temp;
+	//tb->tmp = tb->temp;
 	while ((int)(state->li_b)->content != (int)tb->ch_max->content && tb->temp)
 	{
 		if ((int)(state->li_b)->content == (int)tb->ch_min->content)
@@ -30,7 +30,7 @@ void	temp_loop(t_state *state, t_tb_2 *tb)
 			tb->reminder++;
 			transfer_top(&state->li_b, &state->li_a, 2, state);
 			shift_down(&state->li_a, 1, state);
-			tb->temp = tb->temp->next;
+			ft_lstpop(&tb->temp);
 		}
 		else if ((int)(state->li_b)->content == (int)tb->prelast->content)
 		{
@@ -65,7 +65,6 @@ void	li_a_reamenagement(t_state *state, t_tb_2 *toolbox)
 {
 	while (toolbox->reminder--)
 		shift_up(&state->li_a, 1, state);
-	//ft_lstclear(&toolbox->tmp, &ft_del);
 }
 
 void	init_loop(t_state *state, t_tb_2 *toolbox)
