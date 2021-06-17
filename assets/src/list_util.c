@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 22:21:23 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 17:46:22 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/17 17:32:04 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ t_list	*list_max(t_list *li)
 
 t_list	*lst_cpy(t_list *li, int size)
 {
-	t_list *temp;
-	t_list *lst;
+	t_list	*temp;
+	t_list	*lst;
 
 	temp = NULL;
 	lst = NULL;
