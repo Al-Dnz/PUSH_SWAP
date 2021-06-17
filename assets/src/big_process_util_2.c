@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 13:21:42 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 13:21:44 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/17 22:04:36 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	tourniquet(t_state *state, t_tb_2 *toolbox)
 
 void	temp_loop(t_state *state, t_tb_2 *tb)
 {
+	tb->tmp = tb->temp;
 	while ((int)(state->li_b)->content != (int)tb->ch_max->content && tb->temp)
 	{
 		if ((int)(state->li_b)->content == (int)tb->ch_min->content)
@@ -64,7 +65,7 @@ void	li_a_reamenagement(t_state *state, t_tb_2 *toolbox)
 {
 	while (toolbox->reminder--)
 		shift_up(&state->li_a, 1, state);
-	ft_lstclear(&toolbox->temp, &ft_del);
+	//ft_lstclear(&toolbox->tmp, &ft_del);
 }
 
 void	init_loop(t_state *state, t_tb_2 *toolbox)

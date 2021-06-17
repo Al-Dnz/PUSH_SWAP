@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 13:21:36 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 13:21:38 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/17 22:04:59 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	sort_3_head(t_list **li, int verbose, t_state *state)
 void	set_toolbox(t_tb_2 *toolbox)
 {
 	toolbox->temp = NULL;
+	toolbox->tmp = NULL;
 	toolbox->ch_min = NULL;
 	toolbox->ch_max = NULL;
 	toolbox->prelast = NULL;
@@ -78,12 +79,14 @@ void	set_toolbox(t_tb_2 *toolbox)
 void	main_process(t_state *state, t_reg *ledger)
 {
 	t_tb_2	toolbox;
+	t_list *tmp;
 
 	set_toolbox(&toolbox);
 	while (ledger)
 	{
 		toolbox.temp = lst_cpy(state->li_b, ledger->n);
 		list_merge_sort(&toolbox.temp);
+		tmp = toolbox.temp;
 		toolbox.reminder = 0;
 		toolbox.sens = 0;
 		while (toolbox.temp)
@@ -93,7 +96,7 @@ void	main_process(t_state *state, t_reg *ledger)
 			transfer_top(&state->li_b, &state->li_a, 2, state);
 			finalize_loop(state, &toolbox);
 		}
-		ft_lstclear(&toolbox.temp, ft_del);
+		//ft_lstclear(&tmp, ft_del);
 		li_a_reamenagement(state, &toolbox);
 		ledger = ledger->next;
 	}

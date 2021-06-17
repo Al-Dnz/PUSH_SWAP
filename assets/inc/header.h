@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 22:17:16 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/15 17:48:33 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/17 21:58:37 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_tb_2
 	t_list	*temp;
 	t_list	*prelast;
 	t_list	*preprelast;
+	t_list	*tmp;
 
 }				t_tb_2;
 
