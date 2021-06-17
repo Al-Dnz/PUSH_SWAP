@@ -22,7 +22,7 @@ t_list	*find_median(t_list *li)
 	size = ft_lstsize(li);
 	i = 0;
 	temp = NULL;
-	lst_cpy(&temp, li, size);
+	temp = lst_cpy(li, size);
 	list_merge_sort(&temp);
 	while (i++ <= size / 2)
 		temp = temp->next;

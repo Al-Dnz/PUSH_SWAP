@@ -91,11 +91,18 @@ t_list	*list_max(t_list *li)
 	return (res);
 }
 
-void	lst_cpy(t_list **dest, t_list *li, int size)
+t_list	*lst_cpy(t_list *li, int size)
 {
+	t_list *temp;
+	t_list *lst;
+
+	temp = NULL;
+	lst = NULL;
 	while (li && size--)
 	{
-		ft_lstadd_back(dest, ft_lstnew(li->content));
+		lst = ft_lstnew(li->content);
+		ft_lstadd_back(&temp, lst);
 		li = li->next;
 	}
+	return (temp);
 }

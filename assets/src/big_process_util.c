@@ -66,7 +66,7 @@ void	brut_sort(t_list **li_a, t_list **li_b, t_reg **ledger, t_state *state)
 		}
 		toolbox.first = 0;
 		register_add_front(ledger, register_new(toolbox.n));
-		ft_lstclear(&toolbox.pivot, ft_del);
+		ft_lstclear(&(toolbox.pivot), ft_del);
 		toolbox.size2 = ft_lstsize(*li_a);
 	}
 }

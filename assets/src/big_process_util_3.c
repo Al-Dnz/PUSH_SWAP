@@ -82,7 +82,7 @@ void	main_process(t_state *state, t_reg *ledger)
 	set_toolbox(&toolbox);
 	while (ledger)
 	{
-		lst_cpy(&toolbox.temp, state->li_b, ledger->n);
+		toolbox.temp = lst_cpy(state->li_b, ledger->n);
 		list_merge_sort(&toolbox.temp);
 		toolbox.reminder = 0;
 		toolbox.sens = 0;

@@ -76,7 +76,7 @@ int		lst_is_sort(t_list *li);
 int		lst_cmp(t_list *li_a, t_list *li_b);
 t_list	*list_min(t_list *li);
 t_list	*list_max(t_list *li);
-void	lst_cpy(t_list **dest, t_list *li, int size);
+t_list	*lst_cpy(t_list *li, int size);
 
 void	display_list(t_list *li);
 void	visual_list(t_list *li);
