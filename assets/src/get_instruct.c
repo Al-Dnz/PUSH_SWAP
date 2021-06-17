@@ -31,7 +31,7 @@ int	auth_str(char *str)
 	return (1);
 }
 
-void	get_instruct(t_list **li_a, t_list **li_b, int *error)
+void	get_instruct_init(t_list **li_a, t_list **li_b, int *error)
 {
 	char	*str;
 	int		ret;
@@ -54,4 +54,33 @@ void	get_instruct(t_list **li_a, t_list **li_b, int *error)
 		ft_strclr(&str);
 	}
 	ft_strclr(&str);
+}
+
+void	get_instruct(t_list **li_a, t_list **li_b, int *error)
+{
+	int		i;
+	int		rd;
+	char	buf[10000];
+
+	i = 0;
+	rd = 1;
+	ft_bzero(buf, 100);
+	while (rd == 1)
+	{
+		rd = read(0, &buf[i], 1);
+		if (buf[i] == '\n')
+		{
+			buf[i] = '\0';
+			if (!auth_str(buf) || ft_strlen(buf) == 0 || ft_strlen(buf) > 3)
+			{
+				*error = 1;
+				rd = 0;
+			}
+			else
+				switcher(buf, li_a, li_b);
+			ft_bzero(buf, 100);
+			i = -1;
+		}
+		i++;
+	}
 }
