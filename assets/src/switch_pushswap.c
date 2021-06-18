@@ -16,12 +16,14 @@ void	sort_by_push(t_list **li_a, t_list **li_b, t_state *state)
 {
 	t_list	*list_inf;
 	int		sens;
+	int 	min;
 
 	while (ft_lstsize(*li_a) > 3)
 	{
 		list_inf = list_min(*li_a);
+		min = (int)list_inf->content;
 		sens = optimized_shift(*li_a, list_inf);
-		while ((int)(*li_a)->content != (int)list_inf->content)
+		while ((int)(*li_a)->content != min)
 		{
 			if (sens)
 				shift_up(li_a, 1, state);
