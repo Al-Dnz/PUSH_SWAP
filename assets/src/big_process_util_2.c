@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 13:21:42 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/18 09:57:59 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/18 10:57:46 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	temp_loop(t_state *state, t_tb_2 *tb)
 			shift_down(&state->li_a, 1, state);
 			ft_lstpop(&tb->temp);
 		}
-		if ((int)(state->li_b)->content == (int)tb->prelast->content)
+		else if ((int)(state->li_b)->content == (int)tb->prelast->content)
 		{
 			if (tb->remind_swap == 0)
 				tb->remind_swap = 1;
