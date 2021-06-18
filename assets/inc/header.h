@@ -86,6 +86,8 @@ void	get_instruct(t_list **li_a, t_list **li_b, int *error);
 void	switcher(char *str, t_list **li_a, t_list **li_b);
 int		lst_checker(t_list **li_a, t_list **li_b);
 int		quit(t_list **li_a, t_list **li_b, int mode, t_state *state);
+int		quit_checker(t_list **li_a, t_list **li_b, int mode);
+
 
 t_list	*find_median(t_list *li);
 

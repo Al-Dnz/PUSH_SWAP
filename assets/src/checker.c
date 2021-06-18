@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_list	*li_a;
 	t_list	*li_b;
-	t_state	state;
 	int		error;
 
 	li_a = NULL;
@@ -31,11 +30,11 @@ int	main(int argc, char **argv)
 	}
 	parser(&li_a, argc, argv, &error);
 	if (error)
-		return (quit(&li_a, &li_b, error, &state));
+		return (quit_checker(&li_a, &li_b, error));
 	get_instruct(&li_a, &li_b, &error);
 	if (lst_checker(&li_a, &li_b) && !error)
 		ft_putstr_fd("OK\n", 1);
 	else if (!lst_checker(&li_a, &li_b) && !error)
 		ft_putstr_fd("KO\n", 1);
-	return (quit(&li_a, &li_b, error, &state));
+	return (quit_checker(&li_a, &li_b, error));
 }

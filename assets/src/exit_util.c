@@ -16,9 +16,24 @@ int	quit(t_list **li_a, t_list **li_b, int error, t_state *state)
 {
 	if (error)
 		ft_putstr_fd("Error\n", 2);
-	ft_lstclear(li_a, &ft_del);
-	ft_lstclear(li_b, &ft_del);
-	register_clear(&state->seq);
+	if (*(li_a) != NULL)
+		ft_lstclear(li_a, &ft_del);
+	if (*(li_b) != NULL)
+		ft_lstclear(li_b, &ft_del);
+	if (state->seq != NULL)
+		register_clear(&state->seq);
+	exit(error);
+	return (error);
+}
+
+int	quit_checker(t_list **li_a, t_list **li_b, int error)
+{
+	if (error)
+		ft_putstr_fd("Error\n", 2);
+	if (*(li_a) != NULL)
+		ft_lstclear(li_a, &ft_del);
+	if (*(li_b) != NULL)
+		ft_lstclear(li_b, &ft_del);
 	exit(error);
 	return (error);
 }

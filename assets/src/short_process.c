@@ -27,6 +27,7 @@ int	forbidden_seq(t_list *li)
 
 	min = (int)list_min(li)->content;
 	max = (int)list_max(li)->content;
+	mid = 0;
 	temp = li;
 	while (temp)
 	{

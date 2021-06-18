@@ -22,16 +22,16 @@ void	tourniquet(t_state *state, t_tb_2 *toolbox)
 
 void	temp_loop(t_state *state, t_tb_2 *tb)
 {
-	//tb->tmp = tb->temp;
 	while ((int)(state->li_b)->content != (int)tb->ch_max->content && tb->temp)
 	{
-		if ((int)(state->li_b)->content == (int)tb->ch_min->content)
+		if ((int)(state->li_b)->content == (int)tb->temp->content && ft_lstsize(tb->temp) > 2)
 		{
 			tb->reminder++;
 			transfer_top(&state->li_b, &state->li_a, 2, state);
 			shift_down(&state->li_a, 1, state);
 			ft_lstpop(&tb->temp);
 		}
+		
 		else if ((int)(state->li_b)->content == (int)tb->prelast->content)
 		{
 			if (tb->remind_swap == 0)
@@ -45,6 +45,7 @@ void	temp_loop(t_state *state, t_tb_2 *tb)
 			transfer_top(&state->li_b, &state->li_a, 2, state);
 		}
 		else
+		
 			tourniquet(state, tb);
 	}
 }
@@ -58,7 +59,7 @@ void	finalize_loop(t_state *state, t_tb_2 *toolbox)
 	}
 	if (toolbox->remind_swap == 2)
 		ft_lstshift(&toolbox->temp);
-	ft_lstshift(&toolbox->temp);
+	ft_lstshift(&toolbox->temp);	
 }
 
 void	li_a_reamenagement(t_state *state, t_tb_2 *toolbox)
@@ -70,6 +71,7 @@ void	li_a_reamenagement(t_state *state, t_tb_2 *toolbox)
 void	init_loop(t_state *state, t_tb_2 *toolbox)
 {
 	toolbox->ch_min = toolbox->temp;
+	toolbox->tmp = toolbox->temp;
 	toolbox->preprelast = pre_pre_last(toolbox->temp);
 	toolbox->prelast = pre_last(toolbox->temp);
 	toolbox->ch_max = ft_lstlast(toolbox->temp);
