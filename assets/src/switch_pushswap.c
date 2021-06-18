@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 16:03:14 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/17 21:47:48 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/06/18 10:53:51 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sort_by_push(t_list **li_a, t_list **li_b, t_state *state)
 {
 	t_list	*list_inf;
 	int		sens;
-	int 	min;
+	int		min;
 
 	while (ft_lstsize(*li_a) > 3)
 	{
