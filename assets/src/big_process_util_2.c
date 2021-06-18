@@ -25,7 +25,7 @@ void	temp_loop(t_state *state, t_tb_2 *tb)
 	while ((int)(state->li_b)->content != (int)tb->ch_max->content && tb->temp)
 	{
 		if ((int)(state->li_b)->content == (int)tb->temp->content
-			&& ft_lstsize(tb->temp) > 2)
+			&& ft_lstsize(tb->temp) > 3)
 		{
 			tb->reminder++;
 			transfer_top(&state->li_b, &state->li_a, 2, state);
