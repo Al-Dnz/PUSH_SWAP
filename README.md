@@ -44,3 +44,9 @@ result is OK if your sequence sorts , KO if not.
 ./push_swap {your list of int} | ./checker {your list of int}
 ```
 should return OK if push_swap program if efficient.
+
+## CORRECTION
+
+```
+ARG=$(ruby random_list.rb 0 1000 [n]) ; ./push_swap $ARG | ./checker_Mac $ARG ;./push_swap $ARG | ./checker $ARG ;./push_swap $ARG | wc -l
+```
